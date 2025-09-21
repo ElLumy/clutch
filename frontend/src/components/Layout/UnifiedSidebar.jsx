@@ -174,9 +174,9 @@ const UnifiedSidebar = () => {
       {/* Expanded Content */}
       {isExpanded && (
         <div className="px-3 space-y-6">
-          {/* Subscriptions Section */}
+          {/* Following Section */}
           <div>
-            <h3 className="text-[#F2F2F2] font-semibold text-base mb-3 px-3">Subscriptions</h3>
+            <h3 className="text-[#F2F2F2] font-semibold text-base mb-3 px-3">Following</h3>
             
             {loading ? (
               <div className="px-3 py-4">
