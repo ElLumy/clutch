@@ -1,8 +1,7 @@
 import React from "react";
 import "./App.css";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import Sidebar from "./components/Layout/Sidebar";
-import SidebarWithAuth from "./components/Layout/SidebarWithAuth";
+import UnifiedSidebar from "./components/Layout/UnifiedSidebar";
 import Header from "./components/Layout/Header";
 import VideoGrid from "./components/Video/VideoGrid";
 import VideoPlayer from "./components/Video/VideoPlayer";
@@ -10,7 +9,7 @@ import VideoPlayer from "./components/Video/VideoPlayer";
 const Home = () => {
   return (
     <div className="min-h-screen bg-[#010101]">
-      <Sidebar />
+      <UnifiedSidebar />
       <Header />
       <VideoGrid />
     </div>
@@ -23,7 +22,7 @@ const VideoPlayerPage = () => {
   
   return (
     <div className="min-h-screen bg-[#010101]">
-      <SidebarWithAuth />
+      <UnifiedSidebar />
       <Header />
       <VideoPlayer videoId={videoId} />
     </div>
