@@ -61,10 +61,10 @@ const VideoPlayer = ({ videoId }) => {
     };
 
     const handleFullscreenChange = () => {
-      // Ensure controls are visible in fullscreen
+      setIsFullscreen(!!document.fullscreenElement);
       const video = videoRef.current;
-      if (video && document.fullscreenElement === video) {
-        video.setAttribute('controls', false);
+      if (video && document.fullscreenElement) {
+        video.setAttribute('controls', 'false');
       }
     };
 
@@ -75,6 +75,8 @@ const VideoPlayer = ({ videoId }) => {
       video.addEventListener('loadeddata', handleLoadedMetadata);
       video.addEventListener('canplay', handleLoadedMetadata);
       document.addEventListener('fullscreenchange', handleFullscreenChange);
+      document.addEventListener('webkitfullscreenchange', handleFullscreenChange);
+      document.addEventListener('msfullscreenchange', handleFullscreenChange);
       
       // Ensure video attributes are set
       video.preload = 'metadata';
@@ -85,6 +87,8 @@ const VideoPlayer = ({ videoId }) => {
         video.removeEventListener('loadeddata', handleLoadedMetadata);
         video.removeEventListener('canplay', handleLoadedMetadata);
         document.removeEventListener('fullscreenchange', handleFullscreenChange);
+        document.removeEventListener('webkitfullscreenchange', handleFullscreenChange);
+        document.removeEventListener('msfullscreenchange', handleFullscreenChange);
       };
     }
   }, [video]); // Add video dependency
