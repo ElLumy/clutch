@@ -4,7 +4,6 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Sidebar from "./components/Layout/Sidebar";
 import Header from "./components/Layout/Header";
 import VideoGrid from "./components/Video/VideoGrid";
-import RightPanel from "./components/Layout/RightPanel";
 
 const Home = () => {
   return (
@@ -12,7 +11,6 @@ const Home = () => {
       <Sidebar />
       <Header />
       <VideoGrid />
-      <RightPanel />
     </div>
   );
 };
