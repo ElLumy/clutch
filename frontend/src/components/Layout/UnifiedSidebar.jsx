@@ -43,7 +43,7 @@ const UnifiedSidebar = () => {
   const navigationItems = [
     { id: 'home', icon: Home, label: 'Home', isActive: true },
     { id: 'esports', icon: Trophy, label: 'Esports', isActive: false },
-    { id: 'subscriptions', icon: Users, label: 'Subscriptions', isActive: false, requiresAuth: true }
+    { id: 'following', icon: Users, label: 'Following', isActive: false, requiresAuth: true }
   ];
 
   const subscriptions = [
