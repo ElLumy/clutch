@@ -67,14 +67,14 @@ const UnifiedSidebar = () => {
     { name: 'Podcasts', icon: Mic }
   ];
 
-  const mockSubscriptions = [
+  const mockFollowing = [
     {
       id: 1,
       username: "ProGamer_2024",
       displayName: "Pro Gamer",
       avatarUrl: "https://images.pexels.com/photos/220453/pexels-photo-220453.jpeg?auto=compress&cs=tinysrgb&w=100",
       isLive: false,
-      subscriberCount: 125000
+      followerCount: 125000
     },
     {
       id: 2,
@@ -82,7 +82,7 @@ const UnifiedSidebar = () => {
       displayName: "Tech Reviewer",
       avatarUrl: "https://images.pexels.com/photos/774909/pexels-photo-774909.jpeg?auto=compress&cs=tinysrgb&w=100",
       isLive: true,
-      subscriberCount: 89000
+      followerCount: 89000
     },
     {
       id: 3,
@@ -90,7 +90,7 @@ const UnifiedSidebar = () => {
       displayName: "ESports Central",
       avatarUrl: "https://images.pexels.com/photos/697509/pexels-photo-697509.jpeg?auto=compress&cs=tinysrgb&w=100",
       isLive: false,
-      subscriberCount: 234000
+      followerCount: 234000
     },
     {
       id: 4,
@@ -98,12 +98,12 @@ const UnifiedSidebar = () => {
       displayName: "Game Guide Official",
       avatarUrl: "https://images.pexels.com/photos/1040880/pexels-photo-1040880.jpeg?auto=compress&cs=tinysrgb&w=100",
       isLive: false,
-      subscriberCount: 67000
+      followerCount: 67000
     }
   ];
 
-  const visibleSubscriptions = showMoreSubscriptions ? subscriptions : subscriptions.slice(0, 4);
-  const visibleMockSubscriptions = showMoreSubscriptions ? mockSubscriptions : mockSubscriptions.slice(0, 3);
+  const visibleFollowing = showMoreSubscriptions ? subscriptions : subscriptions.slice(0, 4);
+  const visibleMockFollowing = showMoreSubscriptions ? mockFollowing : mockFollowing.slice(0, 3);
 
   const handleMouseEnter = () => {
     setIsExpanded(true);
