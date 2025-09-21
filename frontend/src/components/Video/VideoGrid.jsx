@@ -288,29 +288,8 @@ const VideoCard = ({ video, onClick, formatDuration, formatViewCount, formatTime
           </div>
         </div>
 
-        {/* Engagement Row */}
-        <div className="flex items-center justify-between pt-2">
-          <div className="flex items-center space-x-4">
-            <button
-              onClick={(e) => {
-                e.stopPropagation();
-                setIsLiked(!isLiked);
-              }}
-              className="flex items-center space-x-1 text-[#8A8A8A] hover:text-[#2D0F93] transition-colors duration-150 group/like"
-            >
-              <Heart 
-                size={16} 
-                className={`${isLiked ? 'fill-[#2D0F93] text-[#2D0F93]' : ''} group-hover/like:scale-110 transition-transform duration-150`} 
-              />
-              <span className="text-sm">{formatViewCount(likes + (isLiked ? 1 : 0))}</span>
-            </button>
-            
-            <button className="flex items-center space-x-1 text-[#8A8A8A] hover:text-[#2D0F93] transition-colors duration-150">
-              <Share size={16} />
-              <span className="text-sm">Share</span>
-            </button>
-          </div>
-          
+        {/* Engagement Row - Only timestamp now */}
+        <div className="flex items-center justify-end pt-2">
           <span className="text-[#8A8A8A] text-sm">
             {formatTimeAgo(video.createdAt)}
           </span>
