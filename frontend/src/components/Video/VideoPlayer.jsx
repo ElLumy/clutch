@@ -409,7 +409,7 @@ Thanks for watching! Don't forget to like and subscribe for more tech content!
               
               {/* Custom Video Controls - Always visible in fullscreen */}
               <div className={`absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/80 to-transparent p-4 transition-opacity duration-300 ${
-                document.fullscreenElement ? 'opacity-100' : 'opacity-0 group-hover:opacity-100'
+                isFullscreen ? 'opacity-100' : 'opacity-0 group-hover:opacity-100'
               }`}>
                 {/* Progress Bar */}
                 <div className="mb-4 relative">
