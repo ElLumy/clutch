@@ -850,8 +850,8 @@ const AuthPromptModal = ({ type, onClose }) => {
         return 'like this video';
       case 'dislike':
         return 'dislike this video';
-      case 'subscribe':
-        return 'subscribe to this channel';
+      case 'follow':
+        return 'follow this channel';
       case 'comment':
         return 'leave a comment';
       default:
