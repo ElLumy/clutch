@@ -249,7 +249,7 @@ const VideoCard = ({ video, onClick, formatDuration, formatViewCount, formatTime
         {/* Play Button Overlay on Hover */}
         <div className="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-20 transition-all duration-300 flex items-center justify-center">
           <div className="opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-            <div className="w-16 h-16 bg-[#A970FF] rounded-full flex items-center justify-center shadow-lg">
+            <div className="w-16 h-16 bg-[#2D0F93] rounded-full flex items-center justify-center shadow-lg">
               <Play size={24} className="text-white ml-1" />
             </div>
           </div>
