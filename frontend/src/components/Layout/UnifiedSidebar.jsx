@@ -191,7 +191,7 @@ const UnifiedSidebar = () => {
                 <div className="mb-3">
                   <UserPlus size={32} className="mx-auto text-[#8A8A8A] mb-2" />
                   <p className="text-[#B9B9B9] text-sm mb-1">
-                    Sign in to see your subscriptions
+                    Sign in to see who you follow
                   </p>
                   <p className="text-[#8A8A8A] text-xs">
                     Keep track of channels you love
