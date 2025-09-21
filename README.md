@@ -620,6 +620,26 @@ styles/
 
 ---
 
+## Recent Changes & Updates
+
+### January 2025 - Thumbnail Interaction Redesign
+
+**Video Thumbnail Hover Effects Update:**
+- **Removed**: Play button overlay that appeared on thumbnail hover
+- **Added**: White gradient border effect for enhanced visual feedback
+- **Improved**: Cleaner, more sophisticated hover interaction following minimalist design principles
+
+**Technical Changes:**
+- Replaced purple glow shadow (`rgba(45,15,147,0.2)`) with white gradient border
+- Implemented white border with subtle glow (`rgba(255,255,255,0.3)`) on hover
+- Maintained existing scale animation (1.05x) for tactile feedback
+- Preserved all other interaction states and animations
+
+**Design Rationale:**
+The white gradient border approach aligns better with the "floating content" philosophy of the CLUTCH design system. This change reduces visual noise while maintaining clear interaction feedback, creating a more refined and professional aesthetic that emphasizes content over interface elements.
+
+---
+
 ## Conclusion
 
 The CLUTCH design system represents a sophisticated approach to dark UI design that balances aesthetic appeal with functional usability. By carefully orchestrating color, typography, spacing, and interaction design, we've created a visual language that feels both premium and accessible.
