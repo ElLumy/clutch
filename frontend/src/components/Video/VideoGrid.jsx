@@ -184,7 +184,7 @@ const VideoGrid = () => {
           <div className="text-center pb-8">
             <button
               onClick={loadMoreVideos}
-              className="px-6 py-3 bg-[#070707] text-[#F2F2F2] border border-[#1A1A1A] rounded-lg hover:bg-[#A970FF] hover:border-[#A970FF] hover:shadow-[0_0_20px_rgba(169,112,255,0.4)] transition-all duration-150 font-medium"
+              className="px-6 py-3 bg-[#070707] text-[#F2F2F2] border border-[#1A1A1A] rounded-lg hover:bg-[#2D0F93] hover:border-[#2D0F93] hover:shadow-[0_0_20px_rgba(45,15,147,0.4)] transition-all duration-150 font-medium"
             >
               Load More Videos
             </button>
