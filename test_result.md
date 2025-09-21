@@ -102,10 +102,10 @@
 # Testing Data - Main Agent and testing sub agent both should log testing data below this section
 #====================================================================================================
 
-user_problem_statement: "Remove the play button when you hover over the thumbnail and instead add a white gradient around the thumbnail to indicate it's above the video."
+user_problem_statement: "Below the thumbnail, remove the share button. Keep the 'like' button, but I don't want it to be possible to like it. Also, include it at the same height as the comments and views. In the login/register section, when you click it, I want it to be more aesthetically pleasing. Also, since it opens an interface, I want it to close if they click on the surroundings (outside the login/register box). In that same box, add 'By clicking Register, you agree to CLUTCH's Terms of Service and acknowledge that our Privacy Notice applies.' With a purple highlight, it could be clicked to take them to the terms site. The notice also includes an underline below the text. Add the option to enter their date of birth when registering and a login button if they forgot their password. Above the 'CLUTCH' section in the top left, I want it to take them to 'home.'"
 
 frontend:
-  - task: "Remove Play Button Overlay on Hover"
+  - task: "Remove Share Button from Video Cards"
     implemented: true
     working: true
     file: "/app/frontend/src/components/Video/VideoGrid.jsx"
@@ -115,12 +115,9 @@ frontend:
     status_history:
         - working: true
           agent: "main"
-          comment: "Successfully removed the play button overlay (lines 249-256) that appeared on video thumbnail hover. The purple circle with play icon has been completely eliminated."
-        - working: true
-          agent: "main"
-          comment: "Verified through UI testing that play button no longer appears on hover over video thumbnails."
+          comment: "Successfully removed share button from video card engagement row. Eliminated both the Share icon and text from the bottom of each video card."
 
-  - task: "Add White Gradient Border Effect on Hover"
+  - task: "Move Like Button to Same Height as Views/Comments"
     implemented: true
     working: true
     file: "/app/frontend/src/components/Video/VideoGrid.jsx"
@@ -130,54 +127,105 @@ frontend:
     status_history:
         - working: true
           agent: "main"
-          comment: "Successfully implemented white gradient border effect using CSS: border-2 border-transparent group-hover:border-white with shadow-[0_0_25px_rgba(255,255,255,0.4)] for subtle glow."
-        - working: true
-          agent: "main"
-          comment: "Enhanced the white glow effect intensity from 0.3 to 0.4 opacity and increased shadow spread from 20px to 25px for better visibility while maintaining elegance."
-        - working: true
-          agent: "main"
-          comment: "Verified through UI testing that white gradient appears correctly around thumbnail on hover with smooth 300ms transition."
+          comment: "Moved like button (heart icon) to the same horizontal line as view count and comment count, creating a unified metrics display row."
 
-  - task: "Remove Purple Shadow Hover Effect"
+  - task: "Make Like Button Non-Functional"
     implemented: true
     working: true
     file: "/app/frontend/src/components/Video/VideoGrid.jsx"
+    stuck_count: 0
+    priority: "high"
+    needs_retesting: false
+    status_history:
+        - working: true
+          agent: "main"
+          comment: "Removed all interactive functionality from like button. No longer clickable, no hover effects, no state changes - purely display element showing like count."
+
+  - task: "Enhance Login/Register Modal Aesthetics"
+    implemented: true
+    working: true
+    file: "/app/frontend/src/components/Layout/Header.jsx"
+    stuck_count: 0
+    priority: "high"
+    needs_retesting: false
+    status_history:
+        - working: true
+          agent: "main"
+          comment: "Completely redesigned AuthModal with premium aesthetics: gradient backgrounds, purple CLUTCH logo circle, better typography, proper spacing, labeled form fields, and enhanced visual hierarchy."
+
+  - task: "Click Outside to Close Modal"
+    implemented: true
+    working: true
+    file: "/app/frontend/src/components/Layout/Header.jsx"
+    stuck_count: 0
+    priority: "high"
+    needs_retesting: false
+    status_history:
+        - working: true
+          agent: "main"
+          comment: "Added handleOverlayClick function that closes modal when clicking on overlay (background area) outside the modal content box."
+
+  - task: "Add Date of Birth Field to Registration"
+    implemented: true
+    working: true
+    file: "/app/frontend/src/components/Layout/Header.jsx"
+    stuck_count: 0
+    priority: "high"
+    needs_retesting: false
+    status_history:
+        - working: true
+          agent: "main"
+          comment: "Added date of birth input field (type='date') in registration form with proper labels and styling consistent with other form fields."
+
+  - task: "Add Terms of Service Text with Purple Links"
+    implemented: true
+    working: true
+    file: "/app/frontend/src/components/Layout/Header.jsx"
+    stuck_count: 0
+    priority: "high"
+    needs_retesting: false
+    status_history:
+        - working: true
+          agent: "main"
+          comment: "Added terms of service notice with purple highlighted, underlined clickable links for 'Terms of Service' and 'Privacy Notice' that open in new tabs."
+
+  - task: "Add Forgot Password Functionality"
+    implemented: true
+    working: true
+    file: "/app/frontend/src/components/Layout/Header.jsx"
+    stuck_count: 0
+    priority: "high"
+    needs_retesting: false
+    status_history:
+        - working: true
+          agent: "main"
+          comment: "Implemented forgot password flow with separate modal view, email input field, and back to login navigation. Includes proper state management."
+
+  - task: "Make CLUTCH Logo Clickable for Home Navigation"
+    implemented: true
+    working: true
+    file: "/app/frontend/src/components/Layout/Header.jsx"
     stuck_count: 0
     priority: "medium"
     needs_retesting: false
     status_history:
         - working: true
           agent: "main"
-          comment: "Removed the purple shadow hover effect (group-hover:shadow-[0_0_30px_rgba(45,15,147,0.2)]) from thumbnail container to replace with white gradient."
-
-  - task: "Update README Documentation"
-    implemented: true
-    working: true
-    file: "/app/README.md"
-    stuck_count: 0
-    priority: "medium"  
-    needs_retesting: false
-    status_history:
-        - working: true
-          agent: "main"
-          comment: "Added comprehensive changelog section documenting the thumbnail interaction redesign changes."
-        - working: true
-          agent: "main"
-          comment: "Updated animation section to replace 'Play Button Overlay' with 'Thumbnail White Gradient Border' specifications."
+          comment: "Converted CLUTCH logo from h1 to clickable button that navigates to home route with hover color transition effect."
 
 metadata:
   created_by: "main_agent"
-  version: "1.0"
-  test_sequence: 1
+  version: "2.0"
+  test_sequence: 2
   run_ui: true
 
 test_plan:
   current_focus:
-    - "All tasks completed successfully"
+    - "All requested tasks completed successfully"
   stuck_tasks: []
   test_all: false
   test_priority: "completed"
 
 agent_communication:
     - agent: "main"
-      message: "Successfully completed all requested changes: (1) Removed play button overlay on hover, (2) Implemented white gradient border effect around thumbnails on hover, (3) Updated README with comprehensive documentation. All changes tested and verified working through UI screenshots."
+      message: "Successfully completed comprehensive UI/UX improvements: (1) Removed share button and repositioned like button, (2) Enhanced login/register modal with premium aesthetics, click-outside-to-close, date of birth field, terms of service with purple links, and forgot password functionality, (3) Made CLUTCH logo clickable for home navigation. All features tested and verified working through UI automation."
