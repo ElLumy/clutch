@@ -633,15 +633,15 @@ Thanks for watching! Don't forget to like and subscribe for more tech content!
                 </div>
                 
                 <button
-                  onClick={handleSubscribe}
+                  onClick={handleFollow}
                   className={`flex items-center space-x-2 px-6 py-3 rounded-full font-medium transition-all duration-200 ${
-                    subscribed
+                    followed
                       ? 'bg-[#0B0B0B] border border-[#1A1A1A] text-[#F2F2F2] hover:bg-[#070707]'
                       : 'bg-[#2D0F93] text-white hover:bg-[#3D1FB3] hover:shadow-[0_0_20px_rgba(45,15,147,0.4)]'
                   }`}
                 >
                   <UserPlus size={18} />
-                  <span>{subscribed ? 'Subscribed' : 'Subscribe'}</span>
+                  <span>{followed ? 'Following' : 'Follow'}</span>
                 </button>
               </div>
               
