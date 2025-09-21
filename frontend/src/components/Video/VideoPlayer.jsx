@@ -36,7 +36,7 @@ const VideoPlayer = ({ videoId }) => {
   const [loading, setLoading] = useState(true);
   const [liked, setLiked] = useState(false);
   const [disliked, setDisliked] = useState(false);
-  const [subscribed, setSubscribed] = useState(false);
+  const [followed, setFollowed] = useState(false);
   const [showAuthPrompt, setShowAuthPrompt] = useState(false);
   const [authPromptType, setAuthPromptType] = useState('');
   const [comments, setComments] = useState([]);
