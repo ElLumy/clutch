@@ -7,9 +7,13 @@
   --text-primary: #F2F2F2;
   --text-secondary: #B9B9B9;
   --text-muted: #8A8A8A;
-  --accent-purple: #A970FF;
-  --accent-purple-hover: #B885FF;
-  --accent-purple-muted: rgba(169, 112, 255, 0.7);
+  --accent-primary: #2D0F93;
+  --accent-primary-hover: #3D1FB3;
+  --accent-primary-light: #4D2FC3;
+  --accent-primary-muted: rgba(45, 15, 147, 0.7);
+  --accent-primary-glow: rgba(45, 15, 147, 0.4);
+  --accent-secondary: #5A4FCF;
+  --accent-tertiary: #7B6EDB;
   --focus-glow: rgba(242,242,242,0.18);
   --radius-card: 12px;
   --radius-control: 10px;
