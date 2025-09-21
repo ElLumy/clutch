@@ -265,12 +265,12 @@ const UnifiedSidebar = () => {
             </div>
           </div>
 
-          {/* Traditional Subscriptions List (when authenticated) */}
+          {/* Traditional Following List (when authenticated) */}
           {user && (
             <div>
-              <h3 className="text-[#F2F2F2] font-semibold text-base mb-3 px-3">Following</h3>
+              <h3 className="text-[#F2F2F2] font-semibold text-base mb-3 px-3">More Following</h3>
               <div className="space-y-2">
-                {visibleSubscriptions.map((channel, index) => (
+                {visibleFollowing.map((channel, index) => (
                   <div key={index} className="flex items-center space-x-3 group cursor-pointer hover:bg-[#070707] rounded-lg p-2 transition-colors duration-150">
                     <div className="relative">
                       <div className="w-8 h-8 bg-gradient-to-br from-[#2D0F93] to-[#4D2FC3] rounded-full flex items-center justify-center">
