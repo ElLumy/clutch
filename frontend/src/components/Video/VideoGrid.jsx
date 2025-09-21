@@ -210,7 +210,7 @@ const VideoCard = ({ video, onClick, formatDuration, formatViewCount, formatTime
       {/* Thumbnail - Large with subtle zoom on hover */}
       <div 
         onClick={onClick}
-        className="relative bg-[#070707] rounded-xl overflow-hidden mb-4 group-hover:shadow-[0_0_30px_rgba(169,112,255,0.2)] transition-all duration-300" 
+        className="relative bg-[#070707] rounded-xl overflow-hidden mb-4 group-hover:shadow-[0_0_30px_rgba(45,15,147,0.2)] transition-all duration-300" 
         style={{ aspectRatio: '16/9' }}
       >
         {!imageLoaded && !imageError && (
