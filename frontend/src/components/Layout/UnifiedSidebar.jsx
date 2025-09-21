@@ -233,13 +233,13 @@ const UnifiedSidebar = () => {
                   </div>
                 ))}
                 
-                {mockSubscriptions.length > 3 && (
+                {mockFollowing.length > 3 && (
                   <button
                     onClick={() => setShowMoreSubscriptions(!showMoreSubscriptions)}
                     className="flex items-center justify-center space-x-2 w-full text-[#8A8A8A] hover:text-[#F2F2F2] transition-colors duration-150 py-2 text-sm"
                   >
                     {showMoreSubscriptions ? <ChevronUp size={16} /> : <ChevronDown size={16} />}
-                    <span>{showMoreSubscriptions ? 'Show less' : `Show ${mockSubscriptions.length - 3} more`}</span>
+                    <span>{showMoreSubscriptions ? 'Show less' : `Show ${mockFollowing.length - 3} more`}</span>
                   </button>
                 )}
               </div>
