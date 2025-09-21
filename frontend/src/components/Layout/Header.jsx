@@ -208,7 +208,7 @@ const Header = () => {
                     setAuthMode('login');
                     setShowAuthModal(true);
                   }}
-                  className="px-4 py-2 text-[#F2F2F2] bg-transparent border border-[#1A1A1A] rounded-lg hover:bg-[#0B0B0B] transition-all duration-150 text-sm font-medium"
+                  className="px-4 py-2 text-[#F2F2F2] bg-transparent border border-[#1A1A1A] rounded-lg hover:bg-[#0B0B0B] hover:text-[#A970FF] hover:border-[#A970FF] transition-all duration-150 text-sm font-medium"
                 >
                   Log in
                 </button>
@@ -217,7 +217,7 @@ const Header = () => {
                     setAuthMode('register');
                     setShowAuthModal(true);
                   }}
-                  className="px-4 py-2 text-[#F2F2F2] bg-[#070707] border border-[#1A1A1A] rounded-lg hover:bg-[#0B0B0B] hover:shadow-[0_0_12px_rgba(242,242,242,0.06)] transition-all duration-150 text-sm font-medium"
+                  className="px-4 py-2 text-[#F2F2F2] bg-[#070707] border border-[#1A1A1A] rounded-lg hover:bg-[#A970FF] hover:border-[#A970FF] hover:shadow-[0_0_12px_rgba(169,112,255,0.3)] transition-all duration-150 text-sm font-medium"
                 >
                   Register
                 </button>
