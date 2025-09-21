@@ -128,7 +128,7 @@ const VideoGrid = () => {
 
   if (loading) {
     return (
-      <div className="pt-20 pl-[72px] pr-80">
+      <div className="pt-20 pl-80">
         <div className="max-w-[1680px] mx-auto px-6">
           <VideoGridSkeleton />
         </div>
