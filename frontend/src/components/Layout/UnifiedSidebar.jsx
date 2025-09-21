@@ -114,8 +114,9 @@ const UnifiedSidebar = () => {
   };
 
   const handleAuthAction = () => {
-    // Navigate to login/signup page or show modal
-    console.log('Navigate to authentication');
+    // Show login/signup modal or navigate to login page
+    // For now, let's show an alert (in real app, this would navigate to login)
+    alert('Login/Signup functionality would be implemented here. This would navigate to the authentication page or show a login modal.');
   };
 
   return (
