@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useCallback } from 'react';
-import { Play, Clock, Eye, Heart, MessageCircle, Share } from 'lucide-react';
+import { Play, Clock, Eye, Heart, MessageCircle } from 'lucide-react';
 import { dataProvider, filterCategories } from '../../lib/dataProvider';
 
 const VideoGrid = () => {
