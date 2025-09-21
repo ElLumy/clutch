@@ -373,28 +373,49 @@ Thanks for watching! Don't forget to like and subscribe for more tech content!
                 poster={video.thumbnailUrl}
                 className="w-full aspect-video object-cover"
                 onClick={handlePlayPause}
+                preload="metadata"
+                crossOrigin="anonymous"
+                onLoadedMetadata={() => {
+                  if (videoRef.current) {
+                    setDuration(videoRef.current.duration);
+                  }
+                }}
+                onTimeUpdate={() => {
+                  if (videoRef.current) {
+                    setCurrentTime(videoRef.current.currentTime);
+                  }
+                }}
               />
               
-              {/* Custom Video Controls */}
-              <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/80 to-transparent p-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+              {/* Custom Video Controls - Always visible in fullscreen */}
+              <div className={`absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/80 to-transparent p-4 transition-opacity duration-300 ${
+                document.fullscreenElement ? 'opacity-100' : 'opacity-0 group-hover:opacity-100'
+              }`}>
                 {/* Progress Bar */}
                 <div className="mb-4 relative">
-                  <div className="w-full h-1 bg-[#8A8A8A] bg-opacity-30 rounded-lg relative">
+                  <div className="w-full h-1 bg-[#8A8A8A] bg-opacity-30 rounded-lg relative cursor-pointer"
+                       onClick={(e) => {
+                         const rect = e.currentTarget.getBoundingClientRect();
+                         const clickX = e.clientX - rect.left;
+                         const newTime = (clickX / rect.width) * (duration || 0);
+                         handleSeek(newTime);
+                       }}>
                     {/* Progress Track */}
                     <div 
-                      className="h-full bg-[#2D0F93] rounded-lg transition-all duration-100" 
+                      className="h-full bg-[#2D0F93] rounded-lg transition-all duration-100 pointer-events-none" 
                       style={{ width: `${duration ? (currentTime / duration) * 100 : 0}%` }}
                     />
-                    {/* Progress Handle */}
-                    <input
-                      type="range"
-                      min="0"
-                      max={duration || 0}
-                      value={currentTime}
-                      onChange={(e) => handleSeek(parseFloat(e.target.value))}
-                      className="absolute inset-0 w-full h-full appearance-none bg-transparent cursor-pointer slider-thumb"
-                    />
                   </div>
+                  {/* Hidden range input for accessibility */}
+                  <input
+                    type="range"
+                    min="0"
+                    max={duration || 0}
+                    value={currentTime}
+                    onChange={(e) => handleSeek(parseFloat(e.target.value))}
+                    className="absolute inset-0 w-full h-full opacity-0 cursor-pointer"
+                    style={{ margin: 0 }}
+                  />
                 </div>
                 
                 {/* Controls Row */}
