@@ -281,11 +281,13 @@ Content: Opacity fade-in after width animation
 Easing: ease-out for smooth expansion
 ```
 
-**Play Button Overlay**
+**Thumbnail White Gradient Border**
 ```css
-Opacity: 0 → 1 over 300ms
-Scale: 0.8 → 1.0 over 300ms
-Background: Purple with shadow
+Border: transparent → 2px white border over 300ms
+Shadow: 0 0 20px rgba(255,255,255,0.3) on hover
+Scale: 1.05x + subtle translateY(-2px)
+Duration: 300ms
+Easing: ease-out
 ```
 
 ### Loading States
