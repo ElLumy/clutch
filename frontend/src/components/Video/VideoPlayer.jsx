@@ -28,6 +28,7 @@ const VideoPlayer = ({ videoId }) => {
   const [showSettings, setShowSettings] = useState(false);
   const [playbackRate, setPlaybackRate] = useState(1);
   const [quality, setQuality] = useState('1080p');
+  const [isFullscreen, setIsFullscreen] = useState(false);
   
   // Video data and engagement state
   const [video, setVideo] = useState(null);
