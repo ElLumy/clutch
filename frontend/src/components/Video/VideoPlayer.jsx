@@ -294,14 +294,14 @@ Thanks for watching! Don't forget to like and subscribe for more tech content!
     }
   };
 
-  const handleSubscribe = () => {
+  const handleFollow = () => {
     if (!user) {
-      setAuthPromptType('subscribe');
+      setAuthPromptType('follow');
       setShowAuthPrompt(true);
       return;
     }
     
-    setSubscribed(!subscribed);
+    setFollowed(!followed);
   };
 
   const handleCommentSubmit = (e) => {
