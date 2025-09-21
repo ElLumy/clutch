@@ -122,8 +122,8 @@ const VideoGrid = () => {
       author: video.author.username
     });
     
-    console.log('Video clicked:', video.title);
-    // TODO: Navigate to video watch page
+    // Navigate to video player page
+    window.location.href = `/watch?v=${video.id}`;
   };
 
   if (loading) {
