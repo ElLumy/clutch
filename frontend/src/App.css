@@ -131,6 +131,68 @@ textarea:focus-visible {
   box-shadow: 0 0 12px rgba(45, 15, 147, 0.6);
 }
 
+/* Video progress bar specific styling */
+.video-progress-container {
+  position: relative;
+  width: 100%;
+  height: 4px;
+  cursor: pointer;
+}
+
+.video-progress-track {
+  width: 100%;
+  height: 100%;
+  background: rgba(138, 138, 138, 0.3);
+  border-radius: 2px;
+}
+
+.video-progress-filled {
+  height: 100%;
+  background: #2D0F93;
+  border-radius: 2px;
+  transition: width 0.1s ease;
+}
+
+.video-progress-handle {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 12px;
+  height: 12px;
+  background: #2D0F93;
+  border: 2px solid #F2F2F2;
+  border-radius: 50%;
+  opacity: 0;
+  transition: all 0.2s ease;
+  pointer-events: none;
+}
+
+.video-progress-container:hover .video-progress-handle {
+  opacity: 1;
+}
+
+/* Volume bar specific styling */
+.volume-progress-container {
+  position: relative;
+  width: 100%;
+  height: 4px;
+  cursor: pointer;
+}
+
+.volume-progress-track {
+  width: 100%;
+  height: 100%;
+  background: rgba(138, 138, 138, 0.3);
+  border-radius: 2px;
+}
+
+.volume-progress-filled {
+  height: 100%;
+  background: #FFFFFF;
+  border-radius: 2px;
+  transition: width 0.1s ease;
+}
+
 /* Custom scrollbar for comments */
 .comments-scroll::-webkit-scrollbar {
   width: 6px;
