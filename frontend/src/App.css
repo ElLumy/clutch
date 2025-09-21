@@ -7,6 +7,9 @@
   --text-primary: #F2F2F2;
   --text-secondary: #B9B9B9;
   --text-muted: #8A8A8A;
+  --accent-purple: #A970FF;
+  --accent-purple-hover: #B885FF;
+  --accent-purple-muted: rgba(169, 112, 255, 0.7);
   --focus-glow: rgba(242,242,242,0.18);
   --radius-card: 12px;
   --radius-control: 10px;
