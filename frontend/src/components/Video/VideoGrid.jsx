@@ -272,10 +272,6 @@ const VideoCard = ({ video, onClick, formatDuration, formatViewCount, formatTime
                 <Eye size={14} />
                 <span>{formatViewCount(video.viewCount)} views</span>
               </div>
-              <div className="flex items-center space-x-1">
-                <MessageCircle size={14} />
-                <span>{comments}</span>
-              </div>
               <div className="flex items-center space-x-1 text-[#8A8A8A]">
                 <Heart 
                   size={14} 
