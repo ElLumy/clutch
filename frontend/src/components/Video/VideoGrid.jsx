@@ -259,22 +259,22 @@ const VideoCard = ({ video, onClick, formatDuration, formatViewCount, formatTime
       {/* Video Info */}
       <div className="space-y-3">
         {/* Title */}
-        <h3 className="text-[#F2F2F2] font-semibold text-lg leading-tight line-clamp-2 group-hover:text-[#A970FF] transition-colors duration-150">
+        <h3 className="text-[#F2F2F2] font-semibold text-lg leading-tight line-clamp-2 group-hover:text-[#5A4FCF] transition-colors duration-150">
           {video.title}
         </h3>
 
         {/* Channel Info */}
         <div className="flex items-center space-x-3">
-          <div className="w-10 h-10 bg-gradient-to-br from-[#A970FF] to-[#8B5CF6] rounded-full flex items-center justify-center flex-shrink-0">
+          <div className="w-10 h-10 bg-gradient-to-br from-[#2D0F93] to-[#4D2FC3] rounded-full flex items-center justify-center flex-shrink-0">
             <span className="text-white text-sm font-bold">
               {video.author.username.charAt(0).toUpperCase()}
             </span>
           </div>
           <div className="flex-1 min-w-0">
-            <p className="text-[#F2F2F2] text-sm font-medium truncate group-hover:text-[#A970FF] transition-colors duration-150">
+            <p className="text-[#F2F2F2] text-sm font-medium truncate group-hover:text-[#5A4FCF] transition-colors duration-150">
               {video.author.username}
             </p>
-            <div className="flex items-center space-x-4 text-[#A970FF] text-sm mt-1">
+            <div className="flex items-center space-x-4 text-[#2D0F93] text-sm mt-1">
               <div className="flex items-center space-x-1">
                 <Eye size={14} />
                 <span>{formatViewCount(video.viewCount)} views</span>
