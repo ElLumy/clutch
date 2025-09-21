@@ -109,7 +109,7 @@ const VideoPlayer = ({ videoId }) => {
           id: "user1",
           username: "ProGamer_2024",
           displayName: "Pro Gamer",
-          subscriberCount: 125000,
+          followerCount: 125000,
           avatarUrl: "https://images.pexels.com/photos/220453/pexels-photo-220453.jpeg?auto=compress&cs=tinysrgb&w=150"
         },
         description: `🎮 In today's video, we're diving deep into the ultimate graphics card showdown! I've got my hands on both the RTX 4090 and RTX 4080, and we're putting them through their paces in the latest AAA games.
