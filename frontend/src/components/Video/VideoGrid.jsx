@@ -199,7 +199,6 @@ const VideoGrid = () => {
 const VideoCard = ({ video, onClick, formatDuration, formatViewCount, formatTimeAgo }) => {
   const [imageLoaded, setImageLoaded] = useState(false);
   const [imageError, setImageError] = useState(false);
-  const [isLiked, setIsLiked] = useState(false);
 
   // Generate random engagement numbers for demo
   const likes = Math.floor(Math.random() * 10000) + 500;
