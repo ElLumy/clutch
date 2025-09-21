@@ -627,7 +627,7 @@ Thanks for watching! Don't forget to like and subscribe for more tech content!
                       {video.author.displayName}
                     </h3>
                     <p className="text-[#8A8A8A] text-sm">
-                      {formatViewCount(video.author.subscriberCount)} subscribers
+                      {formatViewCount(video.author.followerCount)} followers
                     </p>
                   </div>
                 </div>
