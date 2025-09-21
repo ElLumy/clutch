@@ -135,7 +135,7 @@ const VideoPlayer = ({ videoId }) => {
 • PSU: 1000W 80+ Gold
 • Monitor: 4K 144Hz OLED
 
-Thanks for watching! Don't forget to like and subscribe for more tech content!
+Thanks for watching! Don't forget to like and follow for more tech content!
 
 #RTX4090 #RTX4080 #Gaming #TechReview #NVIDIA`,
         publishedAt: "2024-01-15T10:30:00Z",
