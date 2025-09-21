@@ -206,9 +206,9 @@ const UnifiedSidebar = () => {
                 </button>
               </div>
             ) : (
-              /* User Subscriptions */
+              /* User Following */
               <div className="space-y-2">
-                {visibleMockSubscriptions.map((channel, index) => (
+                {visibleMockFollowing.map((channel, index) => (
                   <div key={channel.id} className="flex items-center space-x-3 group cursor-pointer hover:bg-[#070707] rounded-lg p-2 transition-colors duration-150">
                     <div className="relative">
                       <div className="w-8 h-8 rounded-full overflow-hidden">
