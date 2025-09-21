@@ -246,14 +246,8 @@ const VideoCard = ({ video, onClick, formatDuration, formatViewCount, formatTime
           )}
         </div>
 
-        {/* Play Button Overlay on Hover */}
-        <div className="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-20 transition-all duration-300 flex items-center justify-center">
-          <div className="opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-            <div className="w-16 h-16 bg-[#2D0F93] rounded-full flex items-center justify-center shadow-lg">
-              <Play size={24} className="text-white ml-1" />
-            </div>
-          </div>
-        </div>
+        {/* White Gradient Border on Hover */}
+        <div className="absolute inset-0 rounded-xl border-2 border-transparent group-hover:border-white group-hover:shadow-[0_0_20px_rgba(255,255,255,0.3)] transition-all duration-300 pointer-events-none" />
       </div>
 
       {/* Video Info */}
