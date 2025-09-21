@@ -361,15 +361,23 @@ Thanks for watching! Don't forget to like and subscribe for more tech content!
               {/* Custom Video Controls */}
               <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/80 to-transparent p-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                 {/* Progress Bar */}
-                <div className="mb-4">
-                  <input
-                    type="range"
-                    min="0"
-                    max={duration || 0}
-                    value={currentTime}
-                    onChange={(e) => handleSeek(parseFloat(e.target.value))}
-                    className="w-full h-1 bg-[#8A8A8A] rounded-lg appearance-none cursor-pointer slider-thumb"
-                  />
+                <div className="mb-4 relative">
+                  <div className="w-full h-1 bg-[#8A8A8A] bg-opacity-30 rounded-lg relative">
+                    {/* Progress Track */}
+                    <div 
+                      className="h-full bg-[#2D0F93] rounded-lg transition-all duration-100" 
+                      style={{ width: `${duration ? (currentTime / duration) * 100 : 0}%` }}
+                    />
+                    {/* Progress Handle */}
+                    <input
+                      type="range"
+                      min="0"
+                      max={duration || 0}
+                      value={currentTime}
+                      onChange={(e) => handleSeek(parseFloat(e.target.value))}
+                      className="absolute inset-0 w-full h-full appearance-none bg-transparent cursor-pointer slider-thumb"
+                    />
+                  </div>
                 </div>
                 
                 {/* Controls Row */}
@@ -378,13 +386,13 @@ Thanks for watching! Don't forget to like and subscribe for more tech content!
                     {/* Play/Pause */}
                     <button
                       onClick={handlePlayPause}
-                      className="text-white hover:text-[#2D0F93] transition-colors duration-200"
+                      className="text-white hover:text-[#2D0F93] transition-colors duration-200 flex items-center justify-center"
                     >
                       {isPlaying ? <Pause size={24} /> : <Play size={24} />}
                     </button>
                     
                     {/* Next Video */}
-                    <button className="text-white hover:text-[#2D0F93] transition-colors duration-200">
+                    <button className="text-white hover:text-[#2D0F93] transition-colors duration-200 flex items-center justify-center">
                       <SkipForward size={20} />
                     </button>
                     
@@ -392,19 +400,29 @@ Thanks for watching! Don't forget to like and subscribe for more tech content!
                     <div className="flex items-center space-x-2">
                       <button
                         onClick={handleMuteToggle}
-                        className="text-white hover:text-[#2D0F93] transition-colors duration-200"
+                        className="text-white hover:text-[#2D0F93] transition-colors duration-200 flex items-center justify-center"
                       >
                         {isMuted || volume === 0 ? <VolumeX size={20} /> : <Volume2 size={20} />}
                       </button>
-                      <input
-                        type="range"
-                        min="0"
-                        max="1"
-                        step="0.1"
-                        value={isMuted ? 0 : volume}
-                        onChange={(e) => handleVolumeChange(parseFloat(e.target.value))}
-                        className="w-16 h-1 bg-[#8A8A8A] rounded-lg appearance-none cursor-pointer"
-                      />
+                      <div className="relative w-16 h-1">
+                        <div className="w-full h-full bg-[#8A8A8A] bg-opacity-30 rounded-lg">
+                          {/* Volume Track */}
+                          <div 
+                            className="h-full bg-white rounded-lg transition-all duration-100" 
+                            style={{ width: `${(isMuted ? 0 : volume) * 100}%` }}
+                          />
+                          {/* Volume Handle */}
+                          <input
+                            type="range"
+                            min="0"
+                            max="1"
+                            step="0.1"
+                            value={isMuted ? 0 : volume}
+                            onChange={(e) => handleVolumeChange(parseFloat(e.target.value))}
+                            className="absolute inset-0 w-full h-full appearance-none bg-transparent cursor-pointer"
+                          />
+                        </div>
+                      </div>
                     </div>
                     
                     {/* Time Display */}
@@ -415,24 +433,27 @@ Thanks for watching! Don't forget to like and subscribe for more tech content!
                   
                   <div className="flex items-center space-x-4">
                     {/* Settings */}
-                    <div className="relative">
+                    <div className="relative flex items-center justify-center">
                       <button
                         onClick={() => setShowSettings(!showSettings)}
-                        className="text-white hover:text-[#2D0F93] transition-colors duration-200"
+                        className="text-white hover:text-[#2D0F93] transition-colors duration-200 flex items-center justify-center"
                       >
                         <Settings size={20} />
                       </button>
                       
                       {/* Settings Menu */}
                       {showSettings && (
-                        <div className="absolute bottom-full right-0 mb-2 bg-[#070707] border border-[#1A1A1A] rounded-lg shadow-lg py-2 z-50 min-w-48">
+                        <div className="absolute bottom-full right-0 mb-3 bg-[#070707] border border-[#1A1A1A] rounded-lg shadow-xl py-2 z-50 min-w-48 backdrop-blur-sm">
                           <div className="px-4 py-2 border-b border-[#0E0E0E]">
                             <span className="text-[#F2F2F2] font-medium text-sm">Quality</span>
                             <div className="mt-2 space-y-1">
                               {['2160p', '1440p', '1080p', '720p', '480p'].map((q) => (
                                 <button
                                   key={q}
-                                  onClick={() => setQuality(q)}
+                                  onClick={() => {
+                                    setQuality(q);
+                                    setShowSettings(false);
+                                  }}
                                   className={`block w-full text-left px-2 py-1 rounded text-sm transition-colors duration-150 ${
                                     quality === q ? 'bg-[#2D0F93] text-white' : 'text-[#B9B9B9] hover:text-[#F2F2F2] hover:bg-[#0B0B0B]'
                                   }`}
@@ -448,7 +469,13 @@ Thanks for watching! Don't forget to like and subscribe for more tech content!
                               {[0.25, 0.5, 0.75, 1, 1.25, 1.5, 1.75, 2].map((speed) => (
                                 <button
                                   key={speed}
-                                  onClick={() => setPlaybackRate(speed)}
+                                  onClick={() => {
+                                    setPlaybackRate(speed);
+                                    if (videoRef.current) {
+                                      videoRef.current.playbackRate = speed;
+                                    }
+                                    setShowSettings(false);
+                                  }}
                                   className={`block w-full text-left px-2 py-1 rounded text-sm transition-colors duration-150 ${
                                     playbackRate === speed ? 'bg-[#2D0F93] text-white' : 'text-[#B9B9B9] hover:text-[#F2F2F2] hover:bg-[#0B0B0B]'
                                   }`}
@@ -465,7 +492,7 @@ Thanks for watching! Don't forget to like and subscribe for more tech content!
                     {/* Fullscreen */}
                     <button
                       onClick={handleFullscreen}
-                      className="text-white hover:text-[#2D0F93] transition-colors duration-200"
+                      className="text-white hover:text-[#2D0F93] transition-colors duration-200 flex items-center justify-center"
                     >
                       <Maximize size={20} />
                     </button>
