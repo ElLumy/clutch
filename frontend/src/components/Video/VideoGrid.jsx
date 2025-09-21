@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useCallback } from 'react';
-import { Play, Clock, Eye } from 'lucide-react';
+import { Play, Clock, Eye, Heart, MessageCircle, Share } from 'lucide-react';
 import { dataProvider, filterCategories } from '../../lib/dataProvider';
 
 const VideoGrid = () => {
@@ -128,7 +128,7 @@ const VideoGrid = () => {
 
   if (loading) {
     return (
-      <div className="pt-20 pl-[72px]">
+      <div className="pt-20 pl-[72px] pr-80">
         <div className="max-w-[1680px] mx-auto px-6">
           <VideoGridSkeleton />
         </div>
@@ -137,18 +137,18 @@ const VideoGrid = () => {
   }
 
   return (
-    <div className="pt-20 pl-[72px] min-h-screen bg-[#010101]">
+    <div className="pt-20 pl-[72px] pr-80 min-h-screen bg-[#010101]">
       <div className="max-w-[1680px] mx-auto px-6">
         {/* Filter Pills */}
-        <div className="mb-6 flex gap-3 overflow-x-auto scrollbar-hide pb-2">
+        <div className="mb-8 flex gap-3 overflow-x-auto scrollbar-hide pb-2">
           {filterCategories.map((category) => (
             <button
               key={category.id}
               onClick={() => handleFilterChange(category.id)}
-              className={`flex-shrink-0 px-3 py-2 rounded-lg text-sm font-medium transition-all duration-150 ${
+              className={`flex-shrink-0 px-4 py-2 rounded-lg text-sm font-medium transition-all duration-150 ${
                 activeFilter === category.id
-                  ? 'bg-[#070707] text-[#F2F2F2] border border-[#F2F2F2] border-opacity-40 shadow-[0_0_12px_rgba(242,242,242,0.06)]'
-                  : 'bg-[#070707] text-[#8A8A8A] border border-transparent hover:border-[#F2F2F2] hover:border-opacity-40 hover:text-[#F2F2F2]'
+                  ? 'bg-[#A970FF] text-white shadow-[0_0_20px_rgba(169,112,255,0.4)]'
+                  : 'bg-[#070707] text-[#8A8A8A] border border-transparent hover:border-[#A970FF] hover:text-[#A970FF]'
               }`}
             >
               {category.label}
@@ -156,12 +156,8 @@ const VideoGrid = () => {
           ))}
         </div>
 
-        {/* Video Grid */}
-        <div className="grid gap-4 mb-8" style={{
-          gridTemplateColumns: 'repeat(auto-fill, minmax(280px, 1fr))',
-          columnGap: '16px',
-          rowGap: '20px'
-        }}>
+        {/* Video Grid - 3 videos per row with larger thumbnails */}
+        <div className="grid grid-cols-3 gap-6 mb-8">
           {videos.map((video) => (
             <VideoCard
               key={video.id}
@@ -176,7 +172,7 @@ const VideoGrid = () => {
           {/* Loading More Skeleton */}
           {loadingMore && (
             <>
-              {Array.from({ length: 8 }).map((_, index) => (
+              {Array.from({ length: 6 }).map((_, index) => (
                 <VideoCardSkeleton key={`skeleton-${index}`} />
               ))}
             </>
@@ -188,7 +184,7 @@ const VideoGrid = () => {
           <div className="text-center pb-8">
             <button
               onClick={loadMoreVideos}
-              className="px-6 py-3 bg-[#070707] text-[#F2F2F2] border border-[#1A1A1A] rounded-lg hover:bg-[#0B0B0B] hover:shadow-[0_0_12px_rgba(242,242,242,0.06)] transition-all duration-150 font-medium"
+              className="px-6 py-3 bg-[#070707] text-[#F2F2F2] border border-[#1A1A1A] rounded-lg hover:bg-[#A970FF] hover:border-[#A970FF] hover:shadow-[0_0_20px_rgba(169,112,255,0.4)] transition-all duration-150 font-medium"
             >
               Load More Videos
             </button>
@@ -199,18 +195,24 @@ const VideoGrid = () => {
   );
 };
 
-// Video Card Component
+// Video Card Component with larger design and hover effects
 const VideoCard = ({ video, onClick, formatDuration, formatViewCount, formatTimeAgo }) => {
   const [imageLoaded, setImageLoaded] = useState(false);
   const [imageError, setImageError] = useState(false);
+  const [isLiked, setIsLiked] = useState(false);
+
+  // Generate random engagement numbers for demo
+  const likes = Math.floor(Math.random() * 10000) + 500;
+  const comments = Math.floor(Math.random() * 500) + 20;
 
   return (
-    <div
-      onClick={onClick}
-      className="group cursor-pointer transform hover:scale-[1.02] hover:-translate-y-1 transition-all duration-150 ease-out"
-    >
-      {/* Thumbnail */}
-      <div className="relative bg-[#070707] rounded-xl overflow-hidden mb-3" style={{ aspectRatio: '16/9' }}>
+    <div className="group cursor-pointer">
+      {/* Thumbnail - Large with subtle zoom on hover */}
+      <div 
+        onClick={onClick}
+        className="relative bg-[#070707] rounded-xl overflow-hidden mb-4 group-hover:shadow-[0_0_30px_rgba(169,112,255,0.2)] transition-all duration-300" 
+        style={{ aspectRatio: '16/9' }}
+      >
         {!imageLoaded && !imageError && (
           <div className="absolute inset-0 bg-[#070707] animate-pulse" />
         )}
@@ -219,7 +221,7 @@ const VideoCard = ({ video, onClick, formatDuration, formatViewCount, formatTime
           <img
             src={video.thumbnailUrl}
             alt={video.title}
-            className={`w-full h-full object-cover transition-opacity duration-300 ${
+            className={`w-full h-full object-cover transition-all duration-300 group-hover:scale-105 ${
               imageLoaded ? 'opacity-100' : 'opacity-0'
             }`}
             onLoad={() => setImageLoaded(true)}
@@ -227,59 +229,90 @@ const VideoCard = ({ video, onClick, formatDuration, formatViewCount, formatTime
           />
         ) : (
           <div className="w-full h-full bg-[#070707] flex items-center justify-center">
-            <Play size={32} className="text-[#8A8A8A]" />
+            <Play size={48} className="text-[#8A8A8A]" />
           </div>
         )}
 
         {/* Duration or Live Badge */}
-        <div className="absolute bottom-2 right-2">
+        <div className="absolute bottom-3 right-3">
           {video.isLive ? (
-            <span className="px-2 py-1 bg-red-600 text-white text-xs font-bold rounded">
+            <span className="px-3 py-1 bg-red-500 text-white text-sm font-bold rounded-md shadow-lg">
               LIVE
             </span>
           ) : (
-            <span className="px-2 py-1 bg-black bg-opacity-80 text-[#F2F2F2] text-xs font-medium rounded">
+            <span className="px-2 py-1 bg-black bg-opacity-80 text-[#F2F2F2] text-sm font-medium rounded">
               {formatDuration(video.duration)}
             </span>
           )}
         </div>
 
-        {/* Hover Overlay */}
-        <div className="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-10 transition-all duration-150" />
+        {/* Play Button Overlay on Hover */}
+        <div className="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-20 transition-all duration-300 flex items-center justify-center">
+          <div className="opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+            <div className="w-16 h-16 bg-[#A970FF] rounded-full flex items-center justify-center shadow-lg">
+              <Play size={24} className="text-white ml-1" />
+            </div>
+          </div>
+        </div>
       </div>
 
       {/* Video Info */}
-      <div className="space-y-2">
+      <div className="space-y-3">
         {/* Title */}
-        <h3 className="text-[#F2F2F2] font-semibold text-base leading-tight line-clamp-2 group-hover:text-opacity-90 transition-all duration-150">
+        <h3 className="text-[#F2F2F2] font-semibold text-lg leading-tight line-clamp-2 group-hover:text-[#A970FF] transition-colors duration-150">
           {video.title}
         </h3>
 
         {/* Channel Info */}
         <div className="flex items-center space-x-3">
-          <div className="w-6 h-6 bg-[#070707] rounded-full flex-shrink-0 overflow-hidden">
-            <div className="w-full h-full bg-gradient-to-br from-[#F2F2F2] to-[#8A8A8A] flex items-center justify-center">
-              <span className="text-[#070707] text-xs font-bold">
-                {video.author.username.charAt(0).toUpperCase()}
-              </span>
+          <div className="w-10 h-10 bg-gradient-to-br from-[#A970FF] to-[#8B5CF6] rounded-full flex items-center justify-center flex-shrink-0">
+            <span className="text-white text-sm font-bold">
+              {video.author.username.charAt(0).toUpperCase()}
+            </span>
+          </div>
+          <div className="flex-1 min-w-0">
+            <p className="text-[#F2F2F2] text-sm font-medium truncate group-hover:text-[#A970FF] transition-colors duration-150">
+              {video.author.username}
+            </p>
+            <div className="flex items-center space-x-4 text-[#A970FF] text-sm mt-1">
+              <div className="flex items-center space-x-1">
+                <Eye size={14} />
+                <span>{formatViewCount(video.viewCount)} views</span>
+              </div>
+              <div className="flex items-center space-x-1">
+                <MessageCircle size={14} />
+                <span>{comments}</span>
+              </div>
             </div>
           </div>
-          <span className="text-[#8A8A8A] text-sm font-medium truncate">
-            {video.author.username}
-          </span>
         </div>
 
-        {/* Meta Info */}
-        <div className="flex items-center space-x-1 text-[#8A8A8A] text-sm">
-          <div className="flex items-center space-x-1">
-            <Eye size={14} />
-            <span>{formatViewCount(video.viewCount)} views</span>
+        {/* Engagement Row */}
+        <div className="flex items-center justify-between pt-2">
+          <div className="flex items-center space-x-4">
+            <button
+              onClick={(e) => {
+                e.stopPropagation();
+                setIsLiked(!isLiked);
+              }}
+              className="flex items-center space-x-1 text-[#8A8A8A] hover:text-[#A970FF] transition-colors duration-150 group/like"
+            >
+              <Heart 
+                size={16} 
+                className={`${isLiked ? 'fill-[#A970FF] text-[#A970FF]' : ''} group-hover/like:scale-110 transition-transform duration-150`} 
+              />
+              <span className="text-sm">{formatViewCount(likes + (isLiked ? 1 : 0))}</span>
+            </button>
+            
+            <button className="flex items-center space-x-1 text-[#8A8A8A] hover:text-[#A970FF] transition-colors duration-150">
+              <Share size={16} />
+              <span className="text-sm">Share</span>
+            </button>
           </div>
-          <span>•</span>
-          <div className="flex items-center space-x-1">
-            <Clock size={14} />
-            <span>{formatTimeAgo(video.createdAt)}</span>
-          </div>
+          
+          <span className="text-[#8A8A8A] text-sm">
+            {formatTimeAgo(video.createdAt)}
+          </span>
         </div>
       </div>
     </div>
@@ -288,12 +321,8 @@ const VideoCard = ({ video, onClick, formatDuration, formatViewCount, formatTime
 
 // Skeleton Components
 const VideoGridSkeleton = () => (
-  <div className="grid gap-4" style={{
-    gridTemplateColumns: 'repeat(auto-fill, minmax(280px, 1fr))',
-    columnGap: '16px',
-    rowGap: '20px'
-  }}>
-    {Array.from({ length: 12 }).map((_, index) => (
+  <div className="grid grid-cols-3 gap-6">
+    {Array.from({ length: 9 }).map((_, index) => (
       <VideoCardSkeleton key={index} />
     ))}
   </div>
@@ -301,15 +330,24 @@ const VideoGridSkeleton = () => (
 
 const VideoCardSkeleton = () => (
   <div className="animate-pulse">
-    <div className="bg-[#070707] rounded-xl mb-3" style={{ aspectRatio: '16/9' }} />
-    <div className="space-y-2">
-      <div className="h-4 bg-[#070707] rounded w-4/5" />
-      <div className="h-4 bg-[#070707] rounded w-3/5" />
+    <div className="bg-[#070707] rounded-xl mb-4" style={{ aspectRatio: '16/9' }} />
+    <div className="space-y-3">
+      <div className="h-5 bg-[#070707] rounded w-4/5" />
+      <div className="h-5 bg-[#070707] rounded w-3/5" />
       <div className="flex items-center space-x-3">
-        <div className="w-6 h-6 bg-[#070707] rounded-full" />
-        <div className="h-3 bg-[#070707] rounded w-20" />
+        <div className="w-10 h-10 bg-[#070707] rounded-full" />
+        <div className="flex-1 space-y-2">
+          <div className="h-4 bg-[#070707] rounded w-24" />
+          <div className="h-3 bg-[#070707] rounded w-32" />
+        </div>
       </div>
-      <div className="h-3 bg-[#070707] rounded w-32" />
+      <div className="flex justify-between items-center pt-2">
+        <div className="flex space-x-4">
+          <div className="h-4 bg-[#070707] rounded w-12" />
+          <div className="h-4 bg-[#070707] rounded w-12" />
+        </div>
+        <div className="h-3 bg-[#070707] rounded w-16" />
+      </div>
     </div>
   </div>
 );
