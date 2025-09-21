@@ -137,7 +137,7 @@ const VideoGrid = () => {
   }
 
   return (
-    <div className="pt-20 pl-[72px] pr-80 min-h-screen bg-[#010101]">
+    <div className="pt-20 pl-80 min-h-screen bg-[#010101]">
       <div className="max-w-[1680px] mx-auto px-6">
         {/* Filter Pills */}
         <div className="mb-8 flex gap-3 overflow-x-auto scrollbar-hide pb-2">
