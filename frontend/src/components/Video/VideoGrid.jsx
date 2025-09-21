@@ -202,7 +202,6 @@ const VideoCard = ({ video, onClick, formatDuration, formatViewCount, formatTime
 
   // Generate random engagement numbers for demo
   const likes = Math.floor(Math.random() * 10000) + 500;
-  const comments = Math.floor(Math.random() * 500) + 20;
 
   return (
     <div className="group cursor-pointer">
