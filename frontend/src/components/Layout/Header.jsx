@@ -245,79 +245,229 @@ const Header = () => {
   );
 };
 
-// Simple Auth Modal Component
+// Enhanced Auth Modal Component with improved aesthetics and functionality
 const AuthModal = ({ mode, onClose, onAuth, onModeChange }) => {
   const [formData, setFormData] = useState({
     email: '',
     password: '',
-    username: ''
+    username: '',
+    dateOfBirth: ''
   });
+  const [showForgotPassword, setShowForgotPassword] = useState(false);
 
   const handleSubmit = (e) => {
     e.preventDefault();
     onAuth(mode, formData.email, formData.password, formData.username);
   };
 
+  const handleForgotPassword = (e) => {
+    e.preventDefault();
+    console.log('Forgot password for:', formData.email);
+    // TODO: Implement forgot password functionality
+    alert('Password reset link sent to your email!');
+    setShowForgotPassword(false);
+  };
+
+  const handleOverlayClick = (e) => {
+    if (e.target === e.currentTarget) {
+      onClose();
+    }
+  };
+
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-60 flex items-center justify-center z-50">
-      <div className="bg-[#070707] rounded-2xl p-6 w-full max-w-md border border-[#1A1A1A]">
-        <h2 className="text-[#F2F2F2] text-xl font-bold mb-6">
-          {mode === 'login' ? 'Log in to CLUTCH' : 'Join CLUTCH'}
-        </h2>
-        
-        <form onSubmit={handleSubmit} className="space-y-4">
-          {mode === 'register' && (
-            <input
-              type="text"
-              placeholder="Username"
-              value={formData.username}
-              onChange={(e) => setFormData({...formData, username: e.target.value})}
-              className="w-full h-10 px-3 bg-[#0A0A0A] border border-[#0E0E0E] rounded-lg text-[#F2F2F2] placeholder-[#8A8A8A] focus:border-[#F2F2F2] focus:outline-none transition-colors duration-150"
-              required
-            />
-          )}
-          
-          <input
-            type="email"
-            placeholder="Email"
-            value={formData.email}
-            onChange={(e) => setFormData({...formData, email: e.target.value})}
-            className="w-full h-10 px-3 bg-[#0A0A0A] border border-[#0E0E0E] rounded-lg text-[#F2F2F2] placeholder-[#8A8A8A] focus:border-[#F2F2F2] focus:outline-none transition-colors duration-150"
-            required
-          />
-          
-          <input
-            type="password"
-            placeholder="Password"
-            value={formData.password}
-            onChange={(e) => setFormData({...formData, password: e.target.value})}
-            className="w-full h-10 px-3 bg-[#0A0A0A] border border-[#0E0E0E] rounded-lg text-[#F2F2F2] placeholder-[#8A8A8A] focus:border-[#F2F2F2] focus:outline-none transition-colors duration-150"
-            required
-          />
-          
-          <button
-            type="submit"
-            className="w-full h-10 bg-[#070707] text-[#F2F2F2] border border-[#1A1A1A] rounded-lg hover:bg-[#0B0B0B] hover:shadow-[0_0_12px_rgba(242,242,242,0.06)] transition-all duration-150 font-medium"
-          >
-            {mode === 'login' ? 'Log in' : 'Register'}
-          </button>
-        </form>
-        
-        <div className="mt-4 text-center">
-          <button
-            onClick={() => onModeChange(mode === 'login' ? 'register' : 'login')}
-            className="text-[#8A8A8A] hover:text-[#F2F2F2] transition-colors duration-150 text-sm"
-          >
-            {mode === 'login' ? "Don't have an account? Register" : "Already have an account? Log in"}
-          </button>
-        </div>
-        
+    <div 
+      className="fixed inset-0 bg-black bg-opacity-75 flex items-center justify-center z-50 p-4"
+      onClick={handleOverlayClick}
+    >
+      <div className="bg-gradient-to-br from-[#0A0A0A] to-[#070707] rounded-3xl p-8 w-full max-w-md border border-[#2D0F93] border-opacity-20 shadow-[0_0_40px_rgba(45,15,147,0.15)] backdrop-blur-sm">
+        {/* Close Button */}
         <button
           onClick={onClose}
-          className="absolute top-4 right-4 text-[#8A8A8A] hover:text-[#F2F2F2] transition-colors duration-150"
+          className="absolute top-6 right-6 text-[#8A8A8A] hover:text-[#F2F2F2] transition-colors duration-200 text-2xl font-light"
         >
           ×
         </button>
+
+        {/* Header */}
+        <div className="text-center mb-8">
+          <div className="w-16 h-16 bg-gradient-to-br from-[#2D0F93] to-[#4D2FC3] rounded-full mx-auto mb-4 flex items-center justify-center shadow-[0_0_20px_rgba(45,15,147,0.3)]">
+            <span className="text-white text-2xl font-bold">C</span>
+          </div>
+          <h2 className="text-[#F2F2F2] text-2xl font-bold mb-2">
+            {showForgotPassword ? 'Reset Password' : (mode === 'login' ? 'Welcome Back' : 'Join CLUTCH')}
+          </h2>
+          <p className="text-[#B9B9B9] text-sm">
+            {showForgotPassword ? 'Enter your email to reset your password' : (mode === 'login' ? 'Log in to continue your journey' : 'Create your account and start gaming')}
+          </p>
+        </div>
+        
+        {showForgotPassword ? (
+          // Forgot Password Form
+          <form onSubmit={handleForgotPassword} className="space-y-6">
+            <div className="space-y-2">
+              <label className="block text-[#B9B9B9] text-sm font-medium mb-2">
+                Email Address
+              </label>
+              <input
+                type="email"
+                placeholder="Enter your email"
+                value={formData.email}
+                onChange={(e) => setFormData({...formData, email: e.target.value})}
+                className="w-full h-12 px-4 bg-[#0A0A0A] border border-[#1A1A1A] rounded-xl text-[#F2F2F2] placeholder-[#8A8A8A] 
+                         focus:border-[#2D0F93] focus:ring-2 focus:ring-[#2D0F93] focus:ring-opacity-20 focus:outline-none 
+                         transition-all duration-200"
+                required
+              />
+            </div>
+            
+            <button
+              type="submit"
+              className="w-full h-12 bg-gradient-to-r from-[#2D0F93] to-[#3D1FB3] text-white rounded-xl font-medium 
+                       hover:from-[#3D1FB3] hover:to-[#4D2FC3] hover:shadow-[0_0_25px_rgba(45,15,147,0.4)] 
+                       transform hover:scale-[1.02] transition-all duration-200"
+            >
+              Send Reset Link
+            </button>
+
+            <div className="text-center">
+              <button
+                type="button"
+                onClick={() => setShowForgotPassword(false)}
+                className="text-[#5A4FCF] hover:text-[#4D2FC3] transition-colors duration-200 text-sm font-medium underline"
+              >
+                Back to Login
+              </button>
+            </div>
+          </form>
+        ) : (
+          // Login/Register Form
+          <form onSubmit={handleSubmit} className="space-y-6">
+            {mode === 'register' && (
+              <div className="space-y-2">
+                <label className="block text-[#B9B9B9] text-sm font-medium mb-2">
+                  Username
+                </label>
+                <input
+                  type="text"
+                  placeholder="Choose your username"
+                  value={formData.username}
+                  onChange={(e) => setFormData({...formData, username: e.target.value})}
+                  className="w-full h-12 px-4 bg-[#0A0A0A] border border-[#1A1A1A] rounded-xl text-[#F2F2F2] placeholder-[#8A8A8A] 
+                           focus:border-[#2D0F93] focus:ring-2 focus:ring-[#2D0F93] focus:ring-opacity-20 focus:outline-none 
+                           transition-all duration-200"
+                  required
+                />
+              </div>
+            )}
+            
+            <div className="space-y-2">
+              <label className="block text-[#B9B9B9] text-sm font-medium mb-2">
+                Email Address
+              </label>
+              <input
+                type="email"
+                placeholder="Enter your email"
+                value={formData.email}
+                onChange={(e) => setFormData({...formData, email: e.target.value})}
+                className="w-full h-12 px-4 bg-[#0A0A0A] border border-[#1A1A1A] rounded-xl text-[#F2F2F2] placeholder-[#8A8A8A] 
+                         focus:border-[#2D0F93] focus:ring-2 focus:ring-[#2D0F93] focus:ring-opacity-20 focus:outline-none 
+                         transition-all duration-200"
+                required
+              />
+            </div>
+
+            {mode === 'register' && (
+              <div className="space-y-2">
+                <label className="block text-[#B9B9B9] text-sm font-medium mb-2">
+                  Date of Birth
+                </label>
+                <input
+                  type="date"
+                  value={formData.dateOfBirth}
+                  onChange={(e) => setFormData({...formData, dateOfBirth: e.target.value})}
+                  className="w-full h-12 px-4 bg-[#0A0A0A] border border-[#1A1A1A] rounded-xl text-[#F2F2F2] 
+                           focus:border-[#2D0F93] focus:ring-2 focus:ring-[#2D0F93] focus:ring-opacity-20 focus:outline-none 
+                           transition-all duration-200"
+                  required
+                />
+              </div>
+            )}
+            
+            <div className="space-y-2">
+              <label className="block text-[#B9B9B9] text-sm font-medium mb-2">
+                Password
+              </label>
+              <input
+                type="password"
+                placeholder="Enter your password"
+                value={formData.password}
+                onChange={(e) => setFormData({...formData, password: e.target.value})}
+                className="w-full h-12 px-4 bg-[#0A0A0A] border border-[#1A1A1A] rounded-xl text-[#F2F2F2] placeholder-[#8A8A8A] 
+                         focus:border-[#2D0F93] focus:ring-2 focus:ring-[#2D0F93] focus:ring-opacity-20 focus:outline-none 
+                         transition-all duration-200"
+                required
+              />
+            </div>
+
+            {mode === 'register' && (
+              <div className="text-xs text-[#B9B9B9] leading-relaxed border-t border-[#1A1A1A] pt-4">
+                By clicking Register, you agree to CLUTCH's{' '}
+                <button 
+                  type="button"
+                  onClick={() => window.open('/terms', '_blank')}
+                  className="text-[#2D0F93] hover:text-[#4D2FC3] underline decoration-[#2D0F93] underline-offset-2 transition-colors duration-200"
+                >
+                  Terms of Service
+                </button>
+                {' '}and acknowledge that our{' '}
+                <button 
+                  type="button"
+                  onClick={() => window.open('/privacy', '_blank')}
+                  className="text-[#2D0F93] hover:text-[#4D2FC3] underline decoration-[#2D0F93] underline-offset-2 transition-colors duration-200"
+                >
+                  Privacy Notice
+                </button>
+                {' '}applies.
+              </div>
+            )}
+            
+            <button
+              type="submit"
+              className="w-full h-12 bg-gradient-to-r from-[#2D0F93] to-[#3D1FB3] text-white rounded-xl font-medium 
+                       hover:from-[#3D1FB3] hover:to-[#4D2FC3] hover:shadow-[0_0_25px_rgba(45,15,147,0.4)] 
+                       transform hover:scale-[1.02] transition-all duration-200"
+            >
+              {mode === 'login' ? 'Log In' : 'Create Account'}
+            </button>
+          </form>
+        )}
+        
+        {!showForgotPassword && (
+          <div className="mt-6 space-y-3">
+            {mode === 'login' && (
+              <div className="text-center">
+                <button
+                  onClick={() => setShowForgotPassword(true)}
+                  className="text-[#5A4FCF] hover:text-[#4D2FC3] transition-colors duration-200 text-sm font-medium underline"
+                >
+                  Forgot Password?
+                </button>
+              </div>
+            )}
+            
+            <div className="text-center border-t border-[#1A1A1A] pt-4">
+              <button
+                onClick={() => onModeChange(mode === 'login' ? 'register' : 'login')}
+                className="text-[#B9B9B9] hover:text-[#F2F2F2] transition-colors duration-200 text-sm"
+              >
+                {mode === 'login' ? "Don't have an account? " : "Already have an account? "}
+                <span className="text-[#2D0F93] hover:text-[#4D2FC3] font-medium underline">
+                  {mode === 'login' ? 'Sign Up' : 'Log In'}
+                </span>
+              </button>
+            </div>
+          </div>
+        )}
       </div>
     </div>
   );
