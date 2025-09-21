@@ -59,17 +59,34 @@ const VideoPlayer = ({ videoId }) => {
       }
     };
 
+    const handleFullscreenChange = () => {
+      // Ensure controls are visible in fullscreen
+      const video = videoRef.current;
+      if (video && document.fullscreenElement === video) {
+        video.setAttribute('controls', false);
+      }
+    };
+
     const video = videoRef.current;
     if (video) {
       video.addEventListener('timeupdate', handleTimeUpdate);
       video.addEventListener('loadedmetadata', handleLoadedMetadata);
+      video.addEventListener('loadeddata', handleLoadedMetadata);
+      video.addEventListener('canplay', handleLoadedMetadata);
+      document.addEventListener('fullscreenchange', handleFullscreenChange);
+      
+      // Ensure video attributes are set
+      video.preload = 'metadata';
       
       return () => {
         video.removeEventListener('timeupdate', handleTimeUpdate);
         video.removeEventListener('loadedmetadata', handleLoadedMetadata);
+        video.removeEventListener('loadeddata', handleLoadedMetadata);
+        video.removeEventListener('canplay', handleLoadedMetadata);
+        document.removeEventListener('fullscreenchange', handleFullscreenChange);
       };
     }
-  }, []);
+  }, [video]); // Add video dependency
 
   const loadVideoData = async () => {
     try {
