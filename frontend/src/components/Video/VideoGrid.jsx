@@ -277,6 +277,13 @@ const VideoCard = ({ video, onClick, formatDuration, formatViewCount, formatTime
                 <MessageCircle size={14} />
                 <span>{comments}</span>
               </div>
+              <div className="flex items-center space-x-1 text-[#8A8A8A]">
+                <Heart 
+                  size={14} 
+                  className="text-[#8A8A8A]" 
+                />
+                <span>{formatViewCount(likes)}</span>
+              </div>
             </div>
           </div>
         </div>
