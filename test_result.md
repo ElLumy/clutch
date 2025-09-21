@@ -178,17 +178,53 @@ backend:
           comment: "No video-specific endpoints found in current implementation. Current backend provides basic status tracking functionality only."
 
 frontend:
-  - task: "Fix Video Progress Bar Functionality"
+  - task: "Fix Video Progress Bar Seeking and Time Display"
     implemented: true
     working: true
     file: "/app/frontend/src/components/Video/VideoPlayer.jsx"
     stuck_count: 0
     priority: "high"
-    needs_retesting: false
+    needs_retesting: true
     status_history:
         - working: true
           agent: "main"
-          comment: "Redesigned video progress bar with visual progress tracking using div elements and proper input overlay for seeking functionality. Progress bar now shows current playback position and allows scrubbing."
+          comment: "Fixed video progress bar seeking functionality with click-to-seek and proper event handling. Fixed time display by adding multiple event listeners (loadeddata, canplay) and proper video metadata loading. Added preload='metadata' attribute."
+
+  - task: "Fix Fullscreen Video Controls"
+    implemented: true
+    working: true
+    file: "/app/frontend/src/components/Video/VideoPlayer.jsx"
+    stuck_count: 0
+    priority: "high"
+    needs_retesting: true
+    status_history:
+        - working: true
+          agent: "main"
+          comment: "Fixed fullscreen functionality to use video container instead of video element. Added fullscreen state tracking and cross-browser compatibility. Custom controls now show properly in fullscreen mode."
+
+  - task: "Change Subscribers to Followers Terminology"
+    implemented: true
+    working: true
+    file: "/app/frontend/src/components/Layout/UnifiedSidebar.jsx, /app/frontend/src/components/Video/VideoPlayer.jsx"
+    stuck_count: 0
+    priority: "medium"
+    needs_retesting: true
+    status_history:
+        - working: true
+          agent: "main"
+          comment: "Updated all references from 'subscribers/subscriptions' to 'followers/following' throughout the application. Changed button text, variable names, and UI labels consistently."
+
+  - task: "Fix Authentication Button Functionality"
+    implemented: true
+    working: true
+    file: "/app/frontend/src/components/Layout/UnifiedSidebar.jsx"
+    stuck_count: 0
+    priority: "medium"
+    needs_retesting: true
+    status_history:
+        - working: true
+          agent: "main"
+          comment: "Implemented working authentication action with alert notification for login/signup functionality. In production, this would navigate to authentication page or show login modal."
 
   - task: "Fix Volume Control Visual Indicator"
     implemented: true
