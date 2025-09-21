@@ -247,7 +247,7 @@ const VideoCard = ({ video, onClick, formatDuration, formatViewCount, formatTime
         </div>
 
         {/* White Gradient Border on Hover */}
-        <div className="absolute inset-0 rounded-xl border-2 border-transparent group-hover:border-white group-hover:shadow-[0_0_20px_rgba(255,255,255,0.3)] transition-all duration-300 pointer-events-none" />
+        <div className="absolute inset-0 rounded-xl border-2 border-transparent group-hover:border-white group-hover:shadow-[0_0_25px_rgba(255,255,255,0.4)] transition-all duration-300 pointer-events-none" />
       </div>
 
       {/* Video Info */}
