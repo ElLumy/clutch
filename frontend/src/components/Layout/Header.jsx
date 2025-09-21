@@ -109,7 +109,12 @@ const Header = () => {
         <div className="max-w-[1680px] mx-auto px-6 h-full flex items-center justify-between">
           {/* Logo */}
           <div className="flex items-center">
-            <h1 className="text-[#F2F2F2] text-xl font-bold tracking-tight">CLUTCH</h1>
+            <button 
+              onClick={() => window.location.href = '/'}
+              className="text-[#F2F2F2] text-xl font-bold tracking-tight hover:text-[#5A4FCF] transition-colors duration-150"
+            >
+              CLUTCH
+            </button>
           </div>
 
           {/* Search */}
