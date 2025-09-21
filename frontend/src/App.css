@@ -1,34 +1,88 @@
-.App-logo {
-    height: 40vmin;
-    pointer-events: none;
+/* CLUTCH Design System */
+:root {
+  --bg-base: #010101;
+  --bg-surface: #070707;
+  --bg-hover: #0B0B0B;
+  --border-hairline: #0E0E0E;
+  --text-primary: #F2F2F2;
+  --text-secondary: #B9B9B9;
+  --text-muted: #8A8A8A;
+  --focus-glow: rgba(242,242,242,0.18);
+  --radius-card: 12px;
+  --radius-control: 10px;
+  --gap-col: 16px;
+  --gap-row: 20px;
+  --header-height: 64px;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-    .App-logo {
-        animation: App-logo-spin infinite 20s linear;
-    }
+/* Global Styles */
+* {
+  box-sizing: border-box;
 }
 
-.App-header {
-    background-color: #0f0f10;
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    font-size: calc(10px + 2vmin);
-    color: white;
+body {
+  margin: 0;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto",
+    "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans",
+    "Helvetica Neue", sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background-color: var(--bg-base);
+  color: var(--text-primary);
+  line-height: 1.5;
 }
 
-.App-link {
-    color: #61dafb;
+/* Scrollbar Styles */
+.scrollbar-hide {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
 }
 
-@keyframes App-logo-spin {
-    from {
-        transform: rotate(0deg);
-    }
-    to {
-        transform: rotate(360deg);
-    }
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
+
+/* Line Clamp Utility */
+.line-clamp-2 {
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+/* Focus Ring Styles */
+button:focus-visible,
+input:focus-visible,
+textarea:focus-visible {
+  outline: 2px solid var(--text-primary);
+  outline-offset: 2px;
+  box-shadow: 0 0 0 4px var(--focus-glow);
+}
+
+/* Custom Selection */
+::selection {
+  background-color: var(--text-primary);
+  color: var(--bg-base);
+}
+
+/* Animation Classes */
+@keyframes shimmer {
+  0% {
+    background-position: -200px 0;
+  }
+  100% {
+    background-position: calc(200px + 100%) 0;
+  }
+}
+
+.animate-shimmer {
+  background: linear-gradient(90deg, #0A0A0A 0px, #0F0F0F 40px, #0A0A0A 80px);
+  background-size: 200px;
+  animation: shimmer 1.5s infinite;
+}
+
+/* App Container */
+.App {
+  min-height: 100vh;
+  background-color: var(--bg-base);
 }
