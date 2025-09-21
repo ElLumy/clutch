@@ -147,8 +147,8 @@ const VideoGrid = () => {
               onClick={() => handleFilterChange(category.id)}
               className={`flex-shrink-0 px-4 py-2 rounded-lg text-sm font-medium transition-all duration-150 ${
                 activeFilter === category.id
-                  ? 'bg-[#A970FF] text-white shadow-[0_0_20px_rgba(169,112,255,0.4)]'
-                  : 'bg-[#070707] text-[#8A8A8A] border border-transparent hover:border-[#A970FF] hover:text-[#A970FF]'
+                  ? 'bg-[#2D0F93] text-white shadow-[0_0_20px_rgba(45,15,147,0.4)]'
+                  : 'bg-[#070707] text-[#8A8A8A] border border-transparent hover:border-[#2D0F93] hover:text-[#5A4FCF]'
               }`}
             >
               {category.label}
