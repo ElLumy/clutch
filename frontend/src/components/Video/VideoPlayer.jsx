@@ -826,6 +826,18 @@ Thanks for watching! Don't forget to like and follow for more tech content!
 // Comment Component
 const Comment = ({ comment }) => {
   const [showReplies, setShowReplies] = useState(false);
+  const [liked, setLiked] = useState(false);
+  const [likeCount, setLikeCount] = useState(comment.likeCount || 0);
+  
+  const handleLike = () => {
+    if (liked) {
+      setLiked(false);
+      setLikeCount(likeCount - 1);
+    } else {
+      setLiked(true);
+      setLikeCount(likeCount + 1);
+    }
+  };
   
   return (
     <div className="space-y-4">
@@ -850,14 +862,24 @@ const Comment = ({ comment }) => {
             {comment.content}
           </p>
           <div className="flex items-center space-x-4">
-            <button className="flex items-center space-x-1 text-[#8A8A8A] hover:text-[#2D0F93] transition-colors duration-200">
-              <ThumbsUp size={14} />
-              <span className="text-xs">{comment.likeCount}</span>
+            <button 
+              onClick={handleLike}
+              className={`flex items-center space-x-1 transition-colors duration-200 ${
+                liked 
+                  ? 'text-[#2D0F93]' 
+                  : 'text-[#8A8A8A] hover:text-[#2D0F93]'
+              }`}
+            >
+              <ThumbsUp size={14} className={liked ? 'fill-current' : ''} />
+              <span className="text-xs">{likeCount}</span>
+            </button>
+            <button className="flex items-center space-x-1 text-[#8A8A8A] hover:text-[#F2F2F2] transition-colors duration-200">
+              <ThumbsDown size={14} />
             </button>
             <button className="text-[#8A8A8A] hover:text-[#F2F2F2] text-xs transition-colors duration-200">
               Reply
             </button>
-            {comment.replies.length > 0 && (
+            {comment.replies && comment.replies.length > 0 && (
               <button
                 onClick={() => setShowReplies(!showReplies)}
                 className="text-[#2D0F93] hover:text-[#4D2FC3] text-xs font-medium transition-colors duration-200"
@@ -870,7 +892,7 @@ const Comment = ({ comment }) => {
       </div>
       
       {/* Replies */}
-      {showReplies && comment.replies.length > 0 && (
+      {showReplies && comment.replies && comment.replies.length > 0 && (
         <div className="ml-14 space-y-4">
           {comment.replies.map((reply) => (
             <Comment key={reply.id} comment={reply} />
