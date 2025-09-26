@@ -214,7 +214,43 @@ frontend:
           agent: "main"
           comment: "Updated all references from 'subscribers/subscriptions' to 'followers/following' throughout the application. Changed button text, variable names, and UI labels consistently."
 
-  - task: "Fix Authentication Button Functionality"
+  - task: "Fix Fullscreen Browser Controls"
+    implemented: true
+    working: true
+    file: "/app/frontend/src/components/Video/VideoPlayer.jsx"
+    stuck_count: 0
+    priority: "high"
+    needs_retesting: true
+    status_history:
+        - working: true
+          agent: "main"
+          comment: "Fixed fullscreen mode to completely hide browser video controls using controls=false, controlsList attributes, and disablePictureInPicture. Enhanced fullscreen event handling for cross-browser compatibility."
+
+  - task: "Restructure Settings Menu to be Hierarchical"
+    implemented: true
+    working: true
+    file: "/app/frontend/src/components/Video/VideoPlayer.jsx"
+    stuck_count: 0
+    priority: "high"
+    needs_retesting: true
+    status_history:
+        - working: true
+          agent: "main"
+          comment: "Restructured settings menu to be two-level: Settings > Quality/Speed > Options. Added back navigation buttons and current selection indicators for better UX."
+
+  - task: "Add Comment Like Functionality"
+    implemented: true
+    working: true
+    file: "/app/frontend/src/components/Video/VideoPlayer.jsx"
+    stuck_count: 0
+    priority: "medium"
+    needs_retesting: true
+    status_history:
+        - working: true
+          agent: "main"
+          comment: "Added like/dislike functionality to comments and replies with visual feedback, like count updates, and proper state management. Comments now support interactive engagement."
+
+  - task: "Update Sidebar Footer Links"
     implemented: true
     working: true
     file: "/app/frontend/src/components/Layout/UnifiedSidebar.jsx"
@@ -224,7 +260,7 @@ frontend:
     status_history:
         - working: true
           agent: "main"
-          comment: "Implemented working authentication action with alert notification for login/signup functionality. In production, this would navigate to authentication page or show login modal."
+          comment: "Removed 'More Following' section and added footer links including About, Help Center, Creators, Terms, Community Rules, and Privacy Notice. Cleaned up unused variables."
 
   - task: "Fix Volume Control Visual Indicator"
     implemented: true
