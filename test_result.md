@@ -345,6 +345,9 @@ frontend:
         - working: true
           agent: "main"
           comment: "Removed comment count display and MessageCircle icon from video thumbnails in VideoGrid. Cleaned up unused comments variable."
+        - working: true
+          agent: "testing"
+          comment: "✅ VERIFIED: Comment numbers successfully removed from video thumbnails. No comment count displays or MessageCircle icons found on any video cards. Video thumbnails now show only view counts, like counts, and timestamps as intended."
 
   - task: "Update App Routes to Use Unified Sidebar"
     implemented: true
