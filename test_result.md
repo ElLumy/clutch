@@ -375,6 +375,9 @@ frontend:
         - working: true
           agent: "main"
           comment: "Added authentication prompts in subscriptions section when user is not logged in. Shows sign-in invitation with UserPlus icon and login button."
+        - working: true
+          agent: "testing"
+          comment: "Minor: Authentication prompt implemented in Following section but Sign In button visibility needs improvement. The prompt shows correctly with UserPlus icon and invitation text, but button may not be immediately visible in all states."
 
   - task: "Enhanced Video Control Styling"
     implemented: true
