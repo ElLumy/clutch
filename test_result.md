@@ -214,11 +214,14 @@ frontend:
     file: "/app/frontend/src/components/Layout/UnifiedSidebar.jsx, /app/frontend/src/components/Video/VideoPlayer.jsx"
     stuck_count: 0
     priority: "medium"
-    needs_retesting: true
+    needs_retesting: false
     status_history:
         - working: true
           agent: "main"
           comment: "Updated all references from 'subscribers/subscriptions' to 'followers/following' throughout the application. Changed button text, variable names, and UI labels consistently."
+        - working: true
+          agent: "testing"
+          comment: "✅ VERIFIED: All terminology successfully changed from 'Subscriptions' to 'Following' throughout the application. Sidebar shows 'Following' section, button text updated, and consistent terminology across all pages."
 
   - task: "Fix Fullscreen Browser Controls"
     implemented: true
