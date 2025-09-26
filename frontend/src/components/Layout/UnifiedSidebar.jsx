@@ -266,53 +266,29 @@ const UnifiedSidebar = () => {
             </div>
           </div>
 
-          {/* Traditional Following List (when authenticated) */}
-          {user && (
-            <div>
-              <h3 className="text-[#F2F2F2] font-semibold text-base mb-3 px-3">More Following</h3>
-              <div className="space-y-2">
-                {visibleFollowing.map((channel, index) => (
-                  <div key={index} className="flex items-center space-x-3 group cursor-pointer hover:bg-[#070707] rounded-lg p-2 transition-colors duration-150">
-                    <div className="relative">
-                      <div className="w-8 h-8 bg-gradient-to-br from-[#2D0F93] to-[#4D2FC3] rounded-full flex items-center justify-center">
-                        <span className="text-white text-xs font-bold">
-                          {channel.name.charAt(0).toUpperCase()}
-                        </span>
-                      </div>
-                      {channel.isLive && (
-                        <div className="absolute -top-1 -right-1 w-3 h-3 bg-red-500 rounded-full border-2 border-[#010101]"></div>
-                      )}
-                    </div>
-                    <div className="flex-1 min-w-0">
-                      <div className="flex items-center justify-between">
-                        <p className="text-[#F2F2F2] text-sm font-medium truncate group-hover:text-[#2D0F93] transition-colors duration-150">
-                          {channel.name}
-                        </p>
-                        {channel.isLive && (
-                          <span className="text-red-400 text-xs font-medium ml-2">LIVE</span>
-                        )}
-                      </div>
-                      {channel.isLive ? (
-                        <p className="text-[#8A8A8A] text-xs">{channel.viewers} viewers</p>
-                      ) : (
-                        <p className="text-[#8A8A8A] text-xs">Offline</p>
-                      )}
-                    </div>
-                  </div>
-                ))}
-                
-                {subscriptions.length > 4 && (
-                  <button
-                    onClick={() => setShowMoreSubscriptions(!showMoreSubscriptions)}
-                    className="flex items-center justify-center space-x-2 w-full text-[#8A8A8A] hover:text-[#F2F2F2] transition-colors duration-150 py-2 text-sm"
-                  >
-                    {showMoreSubscriptions ? <ChevronUp size={16} /> : <ChevronDown size={16} />}
-                    <span>{showMoreSubscriptions ? 'Show less' : `Show ${subscriptions.length - 4} more`}</span>
-                  </button>
-                )}
-              </div>
+          {/* Traditional Following List (when authenticated) - Removed */}
+          
+          {/* Footer Links */}
+          <div>
+            <div className="px-3 space-y-2">
+              <h3 className="text-[#F2F2F2] font-semibold text-base mb-3">More</h3>
+              {[
+                'About',
+                'Help Center', 
+                'Creators',
+                'Terms',
+                'Community Rules',
+                'Privacy Notice'
+              ].map((link) => (
+                <button
+                  key={link}
+                  className="block w-full text-left px-3 py-2 text-[#8A8A8A] hover:bg-[#070707] hover:text-[#F2F2F2] rounded-lg transition-colors duration-150 text-sm"
+                >
+                  {link}
+                </button>
+              ))}
             </div>
-          )}
+          </div>
         </div>
       )}
     </div>
