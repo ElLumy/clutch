@@ -102,7 +102,6 @@ const UnifiedSidebar = () => {
     }
   ];
 
-  const visibleFollowing = showMoreSubscriptions ? subscriptions : subscriptions.slice(0, 4);
   const visibleMockFollowing = showMoreSubscriptions ? mockFollowing : mockFollowing.slice(0, 3);
 
   const handleMouseEnter = () => {
