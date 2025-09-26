@@ -395,6 +395,9 @@ Thanks for watching! Don't forget to like and follow for more tech content!
                 onClick={handlePlayPause}
                 preload="metadata"
                 crossOrigin="anonymous"
+                controls={false}
+                controlsList="nodownload nofullscreen noremoteplayback"
+                disablePictureInPicture
                 onLoadedMetadata={() => {
                   if (videoRef.current) {
                     setDuration(videoRef.current.duration);
