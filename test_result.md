@@ -366,20 +366,20 @@ metadata:
 
 test_plan:
   current_focus:
+    - "Fix Fullscreen Browser Controls"
+    - "Restructure Settings Menu to be Hierarchical" 
+    - "Add Comment Like Functionality"
+    - "Update Sidebar Footer Links"
     - "Fix Video Progress Bar Seeking and Time Display"
-    - "Fix Fullscreen Video Controls"
     - "Change Subscribers to Followers Terminology"
     - "Fix Authentication Button Functionality"
     - "Fix Volume Control Visual Indicator"
-    - "Improve Settings Button Alignment and Menu"
-    - "Create Unified Sidebar Component"
-    - "Remove Comment Numbers from Video Thumbnails"
   stuck_tasks: []
   test_all: false
   test_priority: "high_first"
 
 agent_communication:
     - agent: "main"
-      message: "Fixed critical video player issues reported by user: (1) Fixed video progress bar seeking functionality with click-to-seek and proper time display showing current/total duration, (2) Fixed fullscreen mode to show custom controls instead of browser controls with cross-browser compatibility, (3) Changed all 'subscribers/subscriptions' terminology to 'followers/following' throughout application, (4) Implemented working authentication button functionality for non-logged users. Additionally maintained previous improvements: unified sidebar, volume controls, settings alignment, and removed comment numbers. All fixes implemented and ready for automated testing."
+      message: "Implemented additional bug fixes and features as requested: (1) Fixed fullscreen mode to completely hide browser video controls with proper cross-browser compatibility, (2) Restructured settings menu to be hierarchical (Settings > Quality/Speed > Options) with back navigation and current selection indicators, (3) Added like/dislike functionality to comments and replies with interactive engagement and state management, (4) Updated sidebar by removing 'More Following' section and adding footer links (About, Help Center, Creators, Terms, Community Rules, Privacy Notice). All previous improvements maintained including progress bar fixes, terminology changes, unified sidebar, and volume controls. Ready for comprehensive testing."
     - agent: "testing"
       message: "Completed comprehensive backend API testing. All core backend functionality working correctly: (1) Health check endpoint responding properly, (2) Database connectivity verified with successful CRUD operations, (3) CORS configuration working for frontend requests, (4) Created missing environment configuration files for proper service operation. Backend server is fully functional and ready to support the frontend improvements. No authentication or video-specific endpoints found, which appears to be expected for current implementation scope."
