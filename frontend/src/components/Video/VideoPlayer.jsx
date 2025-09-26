@@ -63,8 +63,15 @@ const VideoPlayer = ({ videoId }) => {
     const handleFullscreenChange = () => {
       setIsFullscreen(!!document.fullscreenElement);
       const video = videoRef.current;
-      if (video && document.fullscreenElement) {
+      if (video) {
+        // Force remove any browser controls
+        video.controls = false;
         video.setAttribute('controls', 'false');
+        if (document.fullscreenElement) {
+          // Hide browser UI in fullscreen
+          video.style.outline = 'none';
+          video.style.border = 'none';
+        }
       }
     };
 
