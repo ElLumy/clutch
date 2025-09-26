@@ -505,55 +505,113 @@ Thanks for watching! Don't forget to like and follow for more tech content!
                     {/* Settings */}
                     <div className="relative flex items-center justify-center">
                       <button
-                        onClick={() => setShowSettings(!showSettings)}
+                        onClick={() => {
+                          setShowSettings(!showSettings);
+                          setShowQualityMenu(false);
+                          setShowSpeedMenu(false);
+                        }}
                         className="text-white hover:text-[#2D0F93] transition-colors duration-200 flex items-center justify-center"
                       >
                         <Settings size={20} />
                       </button>
                       
-                      {/* Settings Menu */}
-                      {showSettings && (
+                      {/* Main Settings Menu */}
+                      {showSettings && !showQualityMenu && !showSpeedMenu && (
                         <div className="absolute bottom-full right-0 mb-3 bg-[#070707] border border-[#1A1A1A] rounded-lg shadow-xl py-2 z-50 min-w-48 backdrop-blur-sm">
-                          <div className="px-4 py-2 border-b border-[#0E0E0E]">
+                          <button
+                            onClick={() => {
+                              setShowQualityMenu(true);
+                              setShowSettings(false);
+                            }}
+                            className="flex items-center justify-between w-full px-4 py-2 text-[#F2F2F2] hover:bg-[#0B0B0B] transition-colors duration-150"
+                          >
+                            <span className="text-sm font-medium">Quality</span>
+                            <span className="text-[#8A8A8A] text-xs">{quality}</span>
+                          </button>
+                          <button
+                            onClick={() => {
+                              setShowSpeedMenu(true);
+                              setShowSettings(false);
+                            }}
+                            className="flex items-center justify-between w-full px-4 py-2 text-[#F2F2F2] hover:bg-[#0B0B0B] transition-colors duration-150"
+                          >
+                            <span className="text-sm font-medium">Speed</span>
+                            <span className="text-[#8A8A8A] text-xs">{playbackRate === 1 ? 'Normal' : `${playbackRate}x`}</span>
+                          </button>
+                        </div>
+                      )}
+
+                      {/* Quality Menu */}
+                      {showQualityMenu && (
+                        <div className="absolute bottom-full right-0 mb-3 bg-[#070707] border border-[#1A1A1A] rounded-lg shadow-xl py-2 z-50 min-w-48 backdrop-blur-sm">
+                          <div className="px-4 py-2 border-b border-[#0E0E0E] flex items-center justify-between">
+                            <button
+                              onClick={() => {
+                                setShowQualityMenu(false);
+                                setShowSettings(true);
+                              }}
+                              className="text-[#8A8A8A] hover:text-[#F2F2F2] transition-colors duration-150"
+                            >
+                              ←
+                            </button>
                             <span className="text-[#F2F2F2] font-medium text-sm">Quality</span>
-                            <div className="mt-2 space-y-1">
-                              {['2160p', '1440p', '1080p', '720p', '480p'].map((q) => (
-                                <button
-                                  key={q}
-                                  onClick={() => {
-                                    setQuality(q);
-                                    setShowSettings(false);
-                                  }}
-                                  className={`block w-full text-left px-2 py-1 rounded text-sm transition-colors duration-150 ${
-                                    quality === q ? 'bg-[#2D0F93] text-white' : 'text-[#B9B9B9] hover:text-[#F2F2F2] hover:bg-[#0B0B0B]'
-                                  }`}
-                                >
-                                  {q}
-                                </button>
-                              ))}
-                            </div>
+                            <div></div>
                           </div>
-                          <div className="px-4 py-2">
+                          <div className="py-1">
+                            {['2160p', '1440p', '1080p', '720p', '480p'].map((q) => (
+                              <button
+                                key={q}
+                                onClick={() => {
+                                  setQuality(q);
+                                  setShowQualityMenu(false);
+                                  setShowSettings(false);
+                                }}
+                                className={`block w-full text-left px-4 py-2 text-sm transition-colors duration-150 ${
+                                  quality === q ? 'bg-[#2D0F93] text-white' : 'text-[#B9B9B9] hover:text-[#F2F2F2] hover:bg-[#0B0B0B]'
+                                }`}
+                              >
+                                {q}
+                              </button>
+                            ))}
+                          </div>
+                        </div>
+                      )}
+
+                      {/* Speed Menu */}
+                      {showSpeedMenu && (
+                        <div className="absolute bottom-full right-0 mb-3 bg-[#070707] border border-[#1A1A1A] rounded-lg shadow-xl py-2 z-50 min-w-48 backdrop-blur-sm">
+                          <div className="px-4 py-2 border-b border-[#0E0E0E] flex items-center justify-between">
+                            <button
+                              onClick={() => {
+                                setShowSpeedMenu(false);
+                                setShowSettings(true);
+                              }}
+                              className="text-[#8A8A8A] hover:text-[#F2F2F2] transition-colors duration-150"
+                            >
+                              ←
+                            </button>
                             <span className="text-[#F2F2F2] font-medium text-sm">Speed</span>
-                            <div className="mt-2 space-y-1">
-                              {[0.25, 0.5, 0.75, 1, 1.25, 1.5, 1.75, 2].map((speed) => (
-                                <button
-                                  key={speed}
-                                  onClick={() => {
-                                    setPlaybackRate(speed);
-                                    if (videoRef.current) {
-                                      videoRef.current.playbackRate = speed;
-                                    }
-                                    setShowSettings(false);
-                                  }}
-                                  className={`block w-full text-left px-2 py-1 rounded text-sm transition-colors duration-150 ${
-                                    playbackRate === speed ? 'bg-[#2D0F93] text-white' : 'text-[#B9B9B9] hover:text-[#F2F2F2] hover:bg-[#0B0B0B]'
-                                  }`}
-                                >
-                                  {speed === 1 ? 'Normal' : `${speed}x`}
-                                </button>
-                              ))}
-                            </div>
+                            <div></div>
+                          </div>
+                          <div className="py-1">
+                            {[0.25, 0.5, 0.75, 1, 1.25, 1.5, 1.75, 2].map((speed) => (
+                              <button
+                                key={speed}
+                                onClick={() => {
+                                  setPlaybackRate(speed);
+                                  if (videoRef.current) {
+                                    videoRef.current.playbackRate = speed;
+                                  }
+                                  setShowSpeedMenu(false);
+                                  setShowSettings(false);
+                                }}
+                                className={`block w-full text-left px-4 py-2 text-sm transition-colors duration-150 ${
+                                  playbackRate === speed ? 'bg-[#2D0F93] text-white' : 'text-[#B9B9B9] hover:text-[#F2F2F2] hover:bg-[#0B0B0B]'
+                                }`}
+                              >
+                                {speed === 1 ? 'Normal' : `${speed}x`}
+                              </button>
+                            ))}
                           </div>
                         </div>
                       )}
