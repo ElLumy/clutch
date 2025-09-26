@@ -244,11 +244,14 @@ frontend:
     file: "/app/frontend/src/components/Video/VideoPlayer.jsx"
     stuck_count: 0
     priority: "high"
-    needs_retesting: true
+    needs_retesting: false
     status_history:
         - working: true
           agent: "main"
           comment: "Restructured settings menu to be two-level: Settings > Quality/Speed > Options. Added back navigation buttons and current selection indicators for better UX."
+        - working: true
+          agent: "testing"
+          comment: "✅ VERIFIED: Hierarchical settings menu working perfectly. Settings button opens menu with Quality and Speed options. Quality submenu shows resolution options (1080p, 720p, etc.) with back navigation. Speed submenu shows playback rates (Normal, 1.25x, etc.) with back navigation. Current selections properly indicated."
 
   - task: "Add Comment Like Functionality"
     implemented: true
