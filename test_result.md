@@ -274,11 +274,14 @@ frontend:
     file: "/app/frontend/src/components/Layout/UnifiedSidebar.jsx"
     stuck_count: 0
     priority: "medium"
-    needs_retesting: true
+    needs_retesting: false
     status_history:
         - working: true
           agent: "main"
           comment: "Removed 'More Following' section and added footer links including About, Help Center, Creators, Terms, Community Rules, and Privacy Notice. Cleaned up unused variables."
+        - working: true
+          agent: "testing"
+          comment: "✅ VERIFIED: Footer links successfully added to sidebar. All requested links present: About, Help Center, Creators, Terms, Community Rules, and Privacy Notice. 'More Following' section properly removed. Links are clickable and properly styled."
 
   - task: "Fix Volume Control Visual Indicator"
     implemented: true
