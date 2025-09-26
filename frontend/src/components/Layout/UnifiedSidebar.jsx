@@ -46,15 +46,7 @@ const UnifiedSidebar = () => {
     { id: 'following', icon: Users, label: 'Following', isActive: false, requiresAuth: true }
   ];
 
-  const subscriptions = [
-    { name: 'Sfdx Show', viewers: '12.3K', isLive: true },
-    { name: 'PlayStation Spain', viewers: '8.7K', isLive: false },
-    { name: 'YANPOL', viewers: '15.2K', isLive: true },
-    { name: 'Fish Chips', viewers: '4.1K', isLive: false },
-    { name: 'MADDY', viewers: '9.8K', isLive: true },
-    { name: 'Ibai', viewers: '45.7K', isLive: true },
-    { name: 'eric vieyra', viewers: '2.3K', isLive: false }
-  ];
+
 
   const exploreCategories = [
     { name: 'Music', icon: Music },
