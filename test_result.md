@@ -398,15 +398,7 @@ metadata:
   run_ui: true
 
 test_plan:
-  current_focus:
-    - "Fix Fullscreen Browser Controls"
-    - "Restructure Settings Menu to be Hierarchical" 
-    - "Add Comment Like Functionality"
-    - "Update Sidebar Footer Links"
-    - "Fix Video Progress Bar Seeking and Time Display"
-    - "Change Subscribers to Followers Terminology"
-    - "Fix Authentication Button Functionality"
-    - "Fix Volume Control Visual Indicator"
+  current_focus: []
   stuck_tasks: []
   test_all: false
   test_priority: "high_first"
