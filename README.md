@@ -8,11 +8,14 @@
 5. [Component Architecture](#component-architecture)
 6. [Animation & Interaction Design](#animation--interaction-design)
 7. [Visual Effects & Depth](#visual-effects--depth)
-8. [Implementation Details](#implementation-details)
-9. [Artistic References & Inspiration](#artistic-references--inspiration)
-10. [Usage Guidelines](#usage-guidelines)
-11. [Accessibility & Inclusivity](#accessibility--inclusivity)
-12. [Brand Extension Possibilities](#brand-extension-possibilities)
+8. [Video Player System](#video-player-system)
+9. [Authentication & Social Features](#authentication--social-features)
+10. [Implementation Details](#implementation-details)
+11. [Replication Guidelines - How to Create New Sites](#replication-guidelines---how-to-create-new-sites)
+12. [Artistic References & Inspiration](#artistic-references--inspiration)
+13. [Usage Guidelines](#usage-guidelines)
+14. [Accessibility & Inclusivity](#accessibility--inclusivity)
+15. [Brand Extension Possibilities](#brand-extension-possibilities)
 
 ---
 
