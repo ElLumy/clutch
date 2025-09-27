@@ -20,6 +20,119 @@
 
 ---
 
+## Backend Integration Requirements
+
+### Essential API Endpoints
+
+The video player system requires specific backend endpoints to function properly. For complete implementation details, see the comprehensive [Backend Integration Guide](./BACKEND_INTEGRATION_GUIDE.md).
+
+#### Authentication Endpoints
+- `POST /api/auth/login` - User authentication
+- `POST /api/auth/register` - User registration  
+- `GET /api/auth/me` - Get current user data
+- `POST /api/auth/refresh` - Refresh JWT tokens
+
+#### Video Management Endpoints
+- `GET /api/videos` - Get video list with pagination
+- `GET /api/videos/{video_id}` - Get specific video details
+- `POST /api/videos/{video_id}/view` - Record video view
+- `POST /api/videos/{video_id}/like` - Like/dislike video
+
+#### Social Features Endpoints
+- `POST /api/users/{user_id}/follow` - Follow/unfollow user
+- `GET /api/users/{user_id}/followers` - Get user followers
+- `GET /api/users/me/following/videos` - Get videos from followed users
+
+#### Comment System Endpoints
+- `GET /api/videos/{video_id}/comments` - Get video comments
+- `POST /api/videos/{video_id}/comments` - Post new comment
+- `GET /api/comments/{comment_id}/replies` - Get comment replies
+- `POST /api/comments/{comment_id}/like` - Like/dislike comment
+- `PUT /api/comments/{comment_id}` - Edit comment
+- `DELETE /api/comments/{comment_id}` - Delete comment
+
+### Database Schema Requirements
+
+#### Users Collection
+```javascript
+{
+  id: "uuid",
+  username: "string",
+  display_name: "string", 
+  email: "string",
+  avatar_url: "string",
+  follower_count: "number",
+  following_count: "number",
+  verified: "boolean"
+}
+```
+
+#### Videos Collection
+```javascript
+{
+  id: "uuid",
+  title: "string",
+  description: "string",
+  thumbnail_url: "string",
+  video_url: "string",
+  duration: "number",
+  view_count: "number",
+  like_count: "number",
+  dislike_count: "number",
+  comment_count: "number",
+  author_id: "uuid",
+  quality_variants: {
+    "2160p": "string",
+    "1440p": "string", 
+    "1080p": "string",
+    "720p": "string",
+    "480p": "string"
+  },
+  published_at: "ISO timestamp"
+}
+```
+
+#### Comments Collection
+```javascript
+{
+  id: "uuid",
+  video_id: "uuid",
+  user_id: "uuid",
+  parent_comment_id: "uuid", // null for top-level
+  content: "string",
+  like_count: "number",
+  dislike_count: "number",
+  reply_count: "number",
+  created_at: "ISO timestamp"
+}
+```
+
+### Real-time Features (Optional)
+
+#### WebSocket Events
+- **Video Updates**: Live view counts, like counts, comment counts
+- **New Comments**: Real-time comment notifications
+- **Live Streaming**: Live stream status and viewer counts
+
+### File Storage Requirements
+
+#### Video Processing Pipeline
+1. Client uploads video to CDN (S3/similar)
+2. Video processing service transcodes to multiple qualities
+3. Webhook updates database with processed video URLs
+4. Frontend receives updated video data
+
+#### Required Video Qualities
+- 2160p (4K) - Premium quality
+- 1440p (2K) - High quality  
+- 1080p (FHD) - Standard high definition
+- 720p (HD) - Standard definition
+- 480p (SD) - Mobile/low bandwidth
+
+For detailed implementation instructions, authentication flows, error handling, and complete API specifications, refer to the comprehensive [Backend Integration Guide](./BACKEND_INTEGRATION_GUIDE.md).
+
+---
+
 ## Overview
 
 The CLUTCH Video Player System is a comprehensive YouTube-style video streaming interface built specifically for the CLUTCH gaming platform. It features a professional video player with custom controls, engagement system, authentication integration, and a responsive design that maintains the platform's dark minimalist aesthetic.
